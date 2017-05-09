@@ -8,7 +8,7 @@ my $access24 = ($awstats{access} eq "public" ) ? "all granted" : "ip $localAcces
 my $access22 = ($awstats{access} eq "public" ) ? "all" : "$localAccess" ;
 
     my @AWuser = split(/,/, (${'awstats'}{'Users'} || ""));
-    my $AWuser ="admin,admin\@$DomainName";
+    my $AWuser ="admin admin\@$DomainName";
     foreach (@AWuser) {
     $AWuser = $AWuser . ' ' . $_;
     }
