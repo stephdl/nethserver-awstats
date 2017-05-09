@@ -1,0 +1,31 @@
+#!/usr/bin/perl
+
+use esmith::templates;
+use esmith::ConfigDB;
+my $vdb = esmith::ConfigDB->open_ro('vhosts') || die("Can't open vhosts db");
+my $outDir = '/etc/awstats/';
+
+foreach my $vhost ($vdb->get_all_by_prop('type'=>'vhost')) {
+
+    my %vhostData = $vhost->props();
+
+    foreach $ServerName (split(/,/,$vhostData{ServerNames})) {
+
+        $vhostData{ServerName} = $ServerName;
+
+        #We remove file before to recreate it
+        unlink glob $outDir . 'awstats.'.$ServerName.'.conf';
+
+        #skip if vhost status is not enabled
+        if( !defined($vhostData{status}) || $vhostData{status} ne 'enabled' ){
+            next;
+        }
+                $OUT .= esmith::templates::processTemplate({
+                    MORE_DATA => \%vhostData,
+                    TEMPLATE_PATH => 'awstats',
+                    OUTPUT_TYPE => 'file',
+                    OUTPUT_PREFIX => $outDir,
+                    OUTPUT_FILENAME => 'awstats.'. $vhostData{ServerName}.'.conf'
+                });
+    }
+}

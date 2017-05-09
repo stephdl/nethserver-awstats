@@ -1,0 +1,23 @@
+#!/usr/bin/perl -w
+
+use esmith::Build::CreateLinks qw(:all);
+
+my $event = 'nethserver-awstats-update';
+event_actions ( $event, 'initialize-default-databases' => '00');
+
+#Template to expand
+foreach (qw( cron.d/awstats cron.hourly/awstats ))
+{
+    templates2events("/etc/$_", qw(
+    vhost-create
+    vhost-delete
+    vhost-modify
+    nethserver-awstats-update
+    ));
+}
+
+
+for my $event (qw( nethserver-awstats-update vhost-create  vhost-delete  vhost-modify ))
+{
+    event_actions ($event, 'nethserver-awstats-conf' => '95');
+}
