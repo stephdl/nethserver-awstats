@@ -10,6 +10,7 @@ Source: %{name}-%{version}.tar.gz
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 Requires: nethserver-virtualhosts
 Requires: awstats
+Requires: mod_authnz_pam
 BuildRequires: nethserver-devtools
 BuildArch: noarch
 

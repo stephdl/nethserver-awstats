@@ -1,0 +1,62 @@
+{
+
+my $status = $awstats{'status'} || 'disabled';
+
+return "# awstats configuration is disabled by its status property" unless ($status eq 'enabled');
+
+my $access24 = ($awstats{access} eq "public" ) ? "all granted" : "ip $localAccess" ;
+my $access22 = ($awstats{access} eq "public" ) ? "all" : "$localAccess" ;
+
+    my @AWuser = split(/,/, (${'awstats'}{'Users'} || ""));
+    my $AWuser ="admin,admin\@$DomainName";
+    foreach (@AWuser) {
+    $AWuser = $AWuser . ' ' . $_;
+    }
+
+$OUT .= qq(
+#
+# Content of this file, with correct values, can be automatically added to
+# your Apache server by using the AWStats configure.pl tool.
+#
+
+
+# If using Windows and Perl ActiveStat, this is to enable Perl script as CGI.
+#ScriptInterpreterSource registry
+
+
+#
+# Directives to add to your Apache conf file to allow use of AWStats as a CGI.
+# Note that path "/usr/share/awstats/" must reflect your AWStats install path.
+#
+Alias /awstatsclasses "/usr/share/awstats/wwwroot/classes/"
+Alias /awstatscss "/usr/share/awstats/wwwroot/css/"
+Alias /awstatsicons "/usr/share/awstats/wwwroot/icon/"
+ScriptAlias /awstats/ "/usr/share/awstats/wwwroot/cgi-bin/"
+
+
+#
+# This is to permit URL access to scripts/files in AWStats directory.
+#
+<Directory "/usr/share/awstats/wwwroot">
+    Options None
+    AllowOverride None
+    <IfModule mod_authz_core.c>
+        # Apache 2.4    
+        Require $access24
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        # Apache 2.2
+        Order allow,deny
+        Allow from $access22
+    </IfModule>
+        AuthBasicProvider PAM
+        AuthPAMService awstats
+        require user $AWuser
+        Satisfy all
+</Directory>
+# Additional Perl modules
+<IfModule mod_env.c>
+    SetEnv PERL5LIB /usr/share/awstats/lib:/usr/share/awstats/plugins
+</IfModule>
+);
+}

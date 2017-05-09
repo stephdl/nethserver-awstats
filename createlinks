@@ -6,7 +6,7 @@ my $event = 'nethserver-awstats-update';
 event_actions ( $event, 'initialize-default-databases' => '00');
 
 #Template to expand
-foreach (qw( cron.d/awstats cron.hourly/awstats ))
+foreach (qw( cron.d/awstats cron.hourly/awstats httpd/conf.d/awstats.conf))
 {
     templates2events("/etc/$_", qw(
     vhost-create
