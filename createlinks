@@ -3,7 +3,13 @@
 use esmith::Build::CreateLinks qw(:all);
 
 my $event = 'nethserver-awstats-update';
+
+#action to launch
 event_actions ( $event, 'initialize-default-databases' => '00');
+
+#service to trigger
+event_services( $event , qw(
+      httpd reload))
 
 #Template to expand
 foreach (qw( cron.d/awstats cron.hourly/awstats httpd/conf.d/awstats.conf))

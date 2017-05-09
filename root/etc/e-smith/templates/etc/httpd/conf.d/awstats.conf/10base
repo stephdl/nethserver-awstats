@@ -3,15 +3,13 @@
 my $status = $awstats{'status'} || 'disabled';
 
 return "# awstats configuration is disabled by its status property" unless ($status eq 'enabled');
-
 my $access24 = ($awstats{access} eq "public" ) ? "all granted" : "ip $localAccess" ;
-my $access22 = ($awstats{access} eq "public" ) ? "all" : "$localAccess" ;
 
-    my @AWuser = split(/,/, (${'awstats'}{'Users'} || ""));
-    my $AWuser ="admin admin\@$DomainName";
-    foreach (@AWuser) {
-    $AWuser = $AWuser . ' ' . $_;
-    }
+my @AWuser = split(/,/, (${'awstats'}{'Users'} || ""));
+my $AWuser ="admin admin\@$DomainName";
+foreach (@AWuser) {
+$AWuser = $AWuser . ' ' . $_;
+}
 
 $OUT .= qq(
 #
@@ -40,23 +38,18 @@ ScriptAlias /awstats/ "/usr/share/awstats/wwwroot/cgi-bin/"
 <Directory "/usr/share/awstats/wwwroot">
     Options None
     AllowOverride None
-    <IfModule mod_authz_core.c>
-        # Apache 2.4    
-        Require $access24
-    </IfModule>
-    <IfModule !mod_authz_core.c>
-        # Apache 2.2
-        Order allow,deny
-        Allow from $access22
-    </IfModule>
     <IfModule !authnz_pam_module>
-    LoadModule authnz_pam_module modules/mod_authnz_pam.so
+        LoadModule authnz_pam_module modules/mod_authnz_pam.so
     </IfModule>
-        AuthType Basic
-        AuthBasicProvider PAM
-        AuthPAMService awstats
+    AuthName "Awstats Restricted Files"
+    AuthType Basic
+    AuthBasicProvider PAM
+    AuthPAMService awstats
+
+    <RequireAll>
         require user $AWuser
-        Satisfy all
+        Require $access24
+    </RequireAll>
 </Directory>
 # Additional Perl modules
 <IfModule mod_env.c>
