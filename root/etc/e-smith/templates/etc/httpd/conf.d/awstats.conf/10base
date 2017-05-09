@@ -49,6 +49,10 @@ ScriptAlias /awstats/ "/usr/share/awstats/wwwroot/cgi-bin/"
         Order allow,deny
         Allow from $access22
     </IfModule>
+    <IfModule !authnz_pam_module>
+    LoadModule authnz_pam_module modules/mod_authnz_pam.so
+    </IfModule>
+        AuthType Basic
         AuthBasicProvider PAM
         AuthPAMService awstats
         require user $AWuser
