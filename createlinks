@@ -9,7 +9,7 @@ event_actions ( $event, 'initialize-default-databases' => '00');
 
 #service to trigger
 event_services( $event , qw(
-      httpd reload))
+      httpd reload));
 
 #Template to expand
 foreach (qw( cron.d/awstats cron.hourly/awstats httpd/conf.d/awstats.conf))
