@@ -463,7 +463,31 @@ DefaultFile="index.php index.html"
 # Example: "localhost REGEX[^.*\.localdomain$]"
 # Default: ""
 #
-SkipHosts="127.0.0.1"
+{
+use esmith::NetworksDB;
+use esmith::ConfigDB;
+use strict;
+my $idb = esmith::NetworksDB->open_ro() or die "Could not open network db";
+my $db = esmith::ConfigDB->open_ro() or die "Could not open config db";
+
+my $skipPrivateIp = $db->get_prop('awstats','skipPrivateIp')|| 'disabled';
+
+$OUT .= 'SkipHosts="127.0.0.1';
+
+if ($skipPrivateIp eq 'enabled') {
+
+    foreach my $i ($idb->get_all_by_prop('type' => 'ethernet')) {
+        my $nic = $i->key;
+        my $role = $idb->get_prop($nic,'role');
+        next if ($role ne 'green');
+        my $ip = $idb->get_prop($nic,'ipaddr');
+        $ip =~ s/\d+$//;
+        $ip =~ s/\./\\./g;
+        $OUT .= " REGEX[^$ip]";
+    }
+}
+$OUT .= '"';
+}
 
 
 # Do not include access from clients with a user agent that match following
