@@ -2,6 +2,12 @@
 echo $view->header()->setAttribute('template', $T('AwstatsStatistics_Title'));
 
 $servername = $view->getModule()->getPlatform()->getDatabase('vhosts')->getAll();
+$awstatsStatus = $view->getModule()->getPlatform()->getDatabase('configuration')->getProp('awstats','status');
+
+if ( $awstatsStatus !== 'enabled') {
+   echo $view->translate('AwstatDisabledByProp_label');
+   return;
+}
 
 echo '<style>
 table, th, td {
