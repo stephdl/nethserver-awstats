@@ -1,7 +1,6 @@
 <?php
 echo $view->header()->setAttribute('template', $T('AwstatsStatistics_Title'));
 
-$servername = $view->getModule()->getPlatform()->getDatabase('vhosts')->getAll();
 $awstatsStatus = $view->getModule()->getPlatform()->getDatabase('configuration')->getProp('awstats','status');
 
 if ( $awstatsStatus !== 'enabled') {
@@ -24,6 +23,7 @@ echo '<th>'.$view->translate('Virtualhosts_label').'</th>';
 echo '<th>'.$view->translate('AwstatsDomainURL_label').'</th>';
 echo '</tr>';
 
+$servername = $view->getModule()->getPlatform()->getDatabase('vhosts')->getAll();
 foreach ($servername as $key=>$props) {
 
     $status = $view->getModule()->getPlatform()->getDatabase('vhosts')->getProp("$key",'status');
