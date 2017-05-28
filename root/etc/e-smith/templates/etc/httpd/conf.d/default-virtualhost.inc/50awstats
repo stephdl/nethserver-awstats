@@ -1,0 +1,7 @@
+#
+#50awstats
+#
+{
+$OUT .= "   RewriteEngine On\n";
+$OUT .= "   RewriteRule ^/awstats(/.*)?\$     https://%{HTTP_HOST}/awstats\$1 [R=301,L]\n";
+}  

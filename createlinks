@@ -11,7 +11,9 @@ event_actions ( $event, 'initialize-default-databases' => '00');
 event_services( $event , qw(
       httpd reload));
 
+
 #Template to expand
+templates2events("/etc/httpd/conf.d/default-virtualhost.inc", $event);
 foreach (qw( cron.d/awstats cron.hourly/awstats httpd/conf.d/awstats.conf))
 {
     templates2events("/etc/$_", qw(
