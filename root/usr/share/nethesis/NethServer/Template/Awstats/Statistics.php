@@ -34,7 +34,7 @@ foreach ($servername as $key=>$props) {
     $sn = $view->getModule()->getPlatform()->getDatabase('vhosts')->getProp("$key",'ServerNames');
     foreach (explode(',', $sn) as $sn2) {
         $host = explode(':',$_SERVER['HTTP_HOST']);
-        $url = "https://".$host[0]."/awstats/awstats.pl?config=".$sn2;
+        $url = "https://".$host[0]."/awstats/awstats.pl?config=".$sn2.'.vhost';
         echo '<tr>';
         echo "<td><b>$key</b></td>";
         echo "<td><a href='$url' target='_blank'><font color='blue'> $sn2</font></a></td>";

@@ -8,6 +8,9 @@ my $db = esmith::ConfigDB->open_ro('configuration') || die("Can't open config db
 my $status = $db->get_prop('awstats','status')|| 'disabled';
 my $outDir = '/etc/awstats/';
 
+#We remove file before to recreate it
+unlink glob $outDir . 'awstats.*.vhost.conf';
+
 foreach my $vhost ($vdb->get_all_by_prop('type'=>'vhost')) {
 
     my %vhostData = $vhost->props();
@@ -15,9 +18,6 @@ foreach my $vhost ($vdb->get_all_by_prop('type'=>'vhost')) {
     foreach $ServerName (split(/,/,$vhostData{ServerNames})) {
 
         $vhostData{ServerName} = $ServerName;
-
-        #We remove file before to recreate it
-        unlink glob $outDir . 'awstats.'.$ServerName.'.conf';
 
         #skip if awstats disabled
         if ($status ne 'enabled') {
@@ -33,7 +33,7 @@ foreach my $vhost ($vdb->get_all_by_prop('type'=>'vhost')) {
                     TEMPLATE_PATH => 'awstats',
                     OUTPUT_TYPE => 'file',
                     OUTPUT_PREFIX => $outDir,
-                    OUTPUT_FILENAME => 'awstats.'. $vhostData{ServerName}.'.conf'
+                    OUTPUT_FILENAME => 'awstats.'. $vhostData{ServerName}.'.vhost.conf'
                 });
     }
 }
