@@ -14,6 +14,9 @@ event_services( $event , qw(
 
 #Template to expand
 templates2events("/etc/httpd/conf.d/default-virtualhost.inc", $event);
+templates2events("/etc/httpd/conf.d/virtualhosts.conf", $event);
+
+
 foreach (qw( cron.d/awstats cron.hourly/awstats httpd/conf.d/awstats.conf))
 {
     templates2events("/etc/$_", qw(
@@ -24,7 +27,7 @@ foreach (qw( cron.d/awstats cron.hourly/awstats httpd/conf.d/awstats.conf))
     ));
 }
 
-
+#launch the awstats configuration
 for my $event (qw( nethserver-awstats-update vhost-create  vhost-delete  vhost-modify ))
 {
     event_actions ($event, 'nethserver-awstats-conf' => '95');

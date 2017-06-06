@@ -47,8 +47,7 @@
 # If there are several log files from load balancing servers :
 # Example: "/pathtotools/logresolvemerge.pl *.log |"
 #
-#LogFile="/var/log/httpd/access_log"
-LogFile="/usr/share/awstats/tools/logresolvemerge.pl /var/log/httpd/*access_log* |"
+LogFile="/var/log/httpd/access.{{$ServerName}}.log"
 
 # Enter the log file type you want to analyze.
 # Possible values:
@@ -165,8 +164,7 @@ SiteDomain="{{$ServerName}}"
 # Note: You can also use @/mypath/myfile if list of aliases are in a file.
 # Example: "www.myserver.com localhost 127.0.0.1 REGEX[mydomain\.(net|org)$]"
 #
-HostAliases="localhost 127.0.0.1"
-
+HostAliases="{{$ServerName}}"
 
 # If you want to have hosts reported by name instead of ip address, AWStats
 # need to make reverse DNS lookups (if not already done in your log file).
@@ -185,7 +183,7 @@ HostAliases="localhost 127.0.0.1"
 # 2 - DNS Lookup is made only from static DNS cache file (if it exists)
 # Default: 2
 # 
-DNSLookup=2
+DNSLookup=1
 
 
 # When AWStats updates its statistics, it stores results of its analysis in 

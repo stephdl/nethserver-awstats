@@ -1,0 +1,3 @@
+    #redirect logs for awstats statistics
+    CustomLog /var/log/httpd/access.{{$ServerName}}.log combined
+    ErrorLog /var/log/httpd/error.{{$ServerName}}.log
