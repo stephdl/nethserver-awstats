@@ -1,0 +1,18 @@
+#-----------------------------------------------------------------------------
+# INCLUDES
+#-----------------------------------------------------------------------------
+
+# You can include other config files using the directive with the name of the
+# config file.
+# This is particularly useful for users who have a lot of virtual servers, so
+# a lot of config files and want to maintain common values in only one file.
+# Note that when a variable is defined both in a config file and in an
+# included file, AWStats will use the last value read for parameters that
+# contains one value and AWStats will concat all values from both files for
+# parameters that are lists of values.
+#
+
+#Include "
+
+
+

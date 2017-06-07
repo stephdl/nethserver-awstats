@@ -1,0 +1,592 @@
+#-----------------------------------------------------------------------------
+# OPTIONAL SETUP SECTION (Not required but increase AWStats features)
+#-----------------------------------------------------------------------------
+
+# When the update process runs, AWStats can set a lock file in TEMP or TMP
+# directory. This lock is to avoid to have 2 update processes running at the
+# same time to prevent unknown conflicts problems and avoid DoS attacks when
+# AllowToUpdateStatsFromBrowser is set to 1.
+# Because, when you use lock file, you can experience sometimes problems in
+# lock file not correctly removed (killed process for example requires that
+# you remove the file manualy), this option is not enabled by default (Do
+# not enable this option with no console server access).
+# Change : Effective immediatly
+# Possible values: 0 or 1
+# Default: 0
+#
+EnableLockForUpdate=1
+
+
+# AWStats can do reverse DNS lookups through a static DNS cache file that was
+# previously created manually. If no path is given in static DNS cache file
+# name, AWStats will search DirData directory. This file is never changed.
+# This option is not used if DNSLookup=0.
+# Note: DNS cache file format is 'minsince1970 ipaddress resolved_hostname'
+# or just 'ipaddress resolved_hostname'
+# Change : Effective for new updates only
+# Example: "/mydnscachedir/dnscache"
+# Default: "dnscache.txt"
+#
+DNSStaticCacheFile="dnscache.txt"
+
+
+# AWStats can do reverse DNS lookups through a DNS cache file that was created
+# by a previous run of AWStats. This file is erased and recreated after each
+# statistics update process. You don't need to create and/or edit it.
+# AWStats will read and save this file in DirData directory.
+# This option is used only if DNSLookup=1.
+# Note: If a DNSStaticCacheFile is available, AWStats will check for DNS
+# lookup in DNSLastUpdateCacheFile after checking into DNSStaticCacheFile.
+# Change : Effective for new updates only
+# Example: "/mydnscachedir/dnscachelastupdate"
+# Default: "dnscachelastupdate.txt"
+#
+DNSLastUpdateCacheFile="dnscachelastupdate.txt"
+
+
+# You can specify specific IP addresses that should NOT be looked up in DNS.
+# This option is used only if DNSLookup=1.
+# Note: Use space between each value.
+# Note: You can use regular expression values writing value with REGEX[value].
+# Change : Effective for new updates only
+# Example: "123.123.123.123 REGEX[^192\.168\.]"
+# Default: ""
+#
+SkipDNSLookupFor=""
+
+
+# The following two parameters allow you to protect a config file from being
+# read by AWStats when called from a browser if web user has not been
+# authenticated. Your AWStats program must be in a web protected "realm" (With
+# Apache, you can use .htaccess files to do so. With other web servers, see
+# your server setup manual).
+# Change : Effective immediatly
+# Possible values: 0 or 1
+# Default: 0
+#
+AllowAccessFromWebToAuthenticatedUsersOnly=0
+
+
+# This parameter gives the list of all authorized authenticated users to view
+# statistics for this domain/config file. This parameter is used only if
+# AllowAccessFromWebToAuthenticatedUsersOnly is set to 1.
+# Change : Effective immediatly
+# Example: "user1 user2"
+# Example: "__REMOTE_USER__"
+# Default: ""
+#
+AllowAccessFromWebToFollowingAuthenticatedUsers=""
+
+
+# When this parameter is defined to something, the IP address of the user that
+# reads its statistics from a browser (when AWStats is used as a CGI) is
+# checked and must match one of the IP address values or ranges.
+# Change : Effective immediatly
+# Example: "127.0.0.1 123.123.123.1-123.123.123.255"
+# Default: ""
+#
+AllowAccessFromWebToFollowingIPAddresses=""
+
+
+# If the "DirData" directory (see above) does not exist, AWStats return an
+# error. However, you can ask AWStats to create it.
+# This option can be used by some Web Hosting Providers that has defined a 
+# dynamic value for DirData (for example DirData="/home/__REMOTE_USER__") and
+# don't want to have to create a new directory each time they add a new user.
+# Change : Effective immediatly
+# Possible values: 0 or 1
+# Default: 0
+#
+CreateDirDataIfNotExists=0
+
+
+# You can choose in which format the Awstats history database is saved.
+# Note: Using "xml" format make AWStats building database files three times
+# larger than using "text" format.
+# Change : Database format is switched after next update
+# Possible values: text or xml
+# Default: text
+#
+BuildHistoryFormat=text
+
+
+# If you prefer having the report output pages be built as XML compliant pages
+# instead of simple HTML pages, you can set this to 'xhtml' (May not work
+# properly with old browsers).
+# Change : Effective immediatly
+# Possible values: html or xhtml
+# Default: html
+#
+BuildReportFormat=html
+
+
+# AWStats databases can be updated from command line of from a browser (when
+# used as a cgi program). So AWStats database files need write permission
+# for both command line user and default web server user (nobody for Unix,
+# IUSR_xxx for IIS/Windows,...).
+# To avoid permission problems between update process (run by an admin user)
+# and CGI process (ran by a low level user), AWStats can save its database 
+# files with read and write permissions for everyone.
+# By default, AWStats keeps default user permissions on updated files. If you 
+# set AllowToUpdateStatsFromBrowser to 1, you can change this parameter to 1.
+# Change : Effective for new updates only
+# Possible values: 0 or 1
+# Default: 0
+#
+SaveDatabaseFilesWithPermissionsForEveryone=0
+
+
+# AWStats can purge log file, after analyzing it. Note that AWStats is able
+# to detect new lines in a log file, to process only them, so you can launch
+# AWStats as often as you want, even with this parameter to 0.
+# With 0, no purge is made, so you must use a scheduled task or a web server
+# that make this purge frequently.
+# With 1, the purge of the log file is made each time AWStats update is run.
+# This parameter doesn't work with IIS (This web server doesn't let its log
+# file to be purged).
+# Change : Effective for new updates only
+# Possible values: 0 or 1
+# Default: 0
+#
+PurgeLogFile=0
+
+
+# When PurgeLogFile is setup to 1, AWStats will clean your log file after
+# processing it. You can however keep an archive file of all processed log
+# records by setting this parameter (For example if you want to use another
+# log analyzer). The archived log file is saved in "DirData" with name
+# awstats_archive.configname[.suffix].log
+# This parameter is not used if PurgeLogFile=0
+# Change : Effective for new updates only
+# Possible values: 0, 1, or tags (See LogFile parameter) for suffix
+# Example: 1
+# Example: %YYYY%MM%DD
+# Default: 0
+#
+ArchiveLogRecords=0
+
+
+# Each time you run the update process, AWStats overwrites the 'historic file'
+# for the month (awstatsMMYYYY[.*].txt) with the updated one.
+# When write errors occurs (IO, disk full,...), this historic file can be
+# corrupted and must be deleted. Because this file contains information of all
+# past processed log files, you will loose old stats if removed. So you can
+# ask AWStats to save last non corrupted file in a .bak file. This file is
+# stored in "DirData" directory with other 'historic files'.
+# Change : Effective for new updates only
+# Possible values: 0 or 1
+# Default: 0
+#
+KeepBackupOfHistoricFiles=0
+
+
+# Default index page name for your web server.
+# Change : Effective for new updates only
+# Example: "index.php index.html default.html"
+# Default: "index.php index.html"
+#
+DefaultFile="index.php index.html"
+
+
+# Do not include access from clients that match following criteria.
+# If your log file contains IP addresses in host field, you must enter here
+# matching IP addresses criteria.
+# If DNS lookup is already done in your log file, you must enter here hostname
+# criteria, else enter ip address criteria.
+# The opposite parameter of "SkipHosts" is "OnlyHosts".
+# Note: Use space between each value. This parameter is not case sensitive.
+# Note: You can use regular expression values writing value with REGEX[value].
+# Change : Effective for new updates only
+# Example: "127.0.0.1 REGEX[^192\.168\.] REGEX[^10\.]"
+# Example: "localhost REGEX[^.*\.localdomain$]"
+# Default: ""
+#
+{
+use esmith::NetworksDB;
+use esmith::ConfigDB;
+use strict;
+my $idb = esmith::NetworksDB->open_ro() or die "Could not open network db";
+my $db = esmith::ConfigDB->open_ro() or die "Could not open config db";
+
+my $skipPrivateIp = $db->get_prop('awstats','skipPrivateIp')|| 'disabled';
+
+$OUT .= 'SkipHosts="127.0.0.1';
+
+if ($skipPrivateIp eq 'enabled') {
+
+    foreach my $i ($idb->get_all_by_prop('type' => 'ethernet')) {
+        my $nic = $i->key;
+        my $role = $idb->get_prop($nic,'role');
+        next if ($role ne 'green');
+        my $ip = $idb->get_prop($nic,'ipaddr');
+        $ip =~ s/\d+$//;
+        $ip =~ s/\./\\./g;
+        $OUT .= " REGEX[^$ip]";
+    }
+}
+$OUT .= '"';
+}
+
+
+# Do not include access from clients with a user agent that match following
+# criteria. If you want to exclude a robot, you should update the robots.pm
+# file instead of this parameter.
+# The opposite parameter of "SkipUserAgents" is "OnlyUserAgents".
+# Note: Use space between each value. This parameter is not case sensitive.
+# Note: You can use regular expression values writing value with REGEX[value].
+# Change : Effective for new updates only
+# Example: "konqueror REGEX[ua_test_v\d\.\d]"
+# Default: ""
+#
+SkipUserAgents=""
+
+
+# Use SkipFiles to ignore access to URLs that match one of following entries.
+# You can enter a list of not important URLs (like framed menus, hidden pages,
+# etc...) to exclude them from statistics. You must enter here exact relative
+# URL as found in log file, or a matching REGEX value. Check apply on URL with
+# all its query paramaters.
+# For example, to ignore /badpage.php, just add "/badpage.php". To ignore all
+# pages in a particular directory, add "REGEX[^\/directorytoexclude]".
+# The opposite parameter of "SkipFiles" is "OnlyFiles".
+# Note: Use space between each value. This parameter is or not case sensitive
+# depending on URLNotCaseSensitive parameter.
+# Note: You can use regular expression values writing value with REGEX[value].
+# Change : Effective for new updates only
+# Example: "/badpage.php /page.php?param=x REGEX[^\/excludedirectory]"
+# Default: ""
+#
+SkipFiles=""
+
+
+# Use SkipReferrersBlackList if you want to exclude records coming from a SPAM
+# referrer. Parameter must receive a local file name containing rules applied
+# on referrer field. If parameter is empty, no filter is applied.
+# An example of such a file is available in lib/blacklist.txt
+# Change : Effective for new updates only
+# Example: "/mylibpath/blacklist.txt"
+# Default: ""
+#
+# WARNING!! Using this feature make AWStats running very slower (5 times slower
+# with black list file provided with AWStats !
+#
+SkipReferrersBlackList=""
+
+
+# Include in stats, only accesses from hosts that match one of following
+# entries. For example, if you want AWStats to filter access to keep only
+# stats for visits from particular hosts, you can add those host names in
+# this parameter.
+# If DNS lookup is already done in your log file, you must enter here hostname
+# criteria, else enter ip address criteria.
+# The opposite parameter of "OnlyHosts" is "SkipHosts".
+# Note: Use space between each value. This parameter is not case sensitive.
+# Note: You can use regular expression values writing value with REGEX[value].
+# Change : Effective for new updates only
+# Example: "127.0.0.1 REGEX[^192\.168\.] REGEX[^10\.]"
+# Default: ""
+#
+OnlyHosts=""
+
+
+# Include in stats, only accesses from user agent that match one of following
+# entries. For example, if you want AWStats to filter access to keep only
+# stats for visits from particular browsers, you can add their user agents
+# string in this parameter.
+# The opposite parameter of "OnlyUserAgents" is "SkipUserAgents".
+# Note: Use space between each value. This parameter is not case sensitive.
+# Note: You can use regular expression values writing value with REGEX[value].
+# Change : Effective for new updates only
+# Example: "msie"
+# Default: ""
+#
+OnlyUserAgents=""
+
+
+# Include in stats, only accesses from authenticated users that match one of
+# following entries. For example, if you want AWStats to filter access to keep
+# only stats for authenticated users, you can add those users names in
+# this parameter. Useful for statistics for per user ftp logs.
+# Note: Use space between each value. This parameter is not case sensitive.
+# Note: You can use regular expression values writing value with REGEX[value].
+# Change : Effective for new updates only
+# Example: "john bob REGEX[^testusers]"
+# Default: ""
+#
+OnlyUsers=""
+
+
+# Include in stats, only accesses to URLs that match one of following entries.
+# For example, if you want AWStats to filter access to keep only stats that
+# match a particular string, like a particular directory, you can add this
+# directory name in this parameter.
+# The opposite parameter of "OnlyFiles" is "SkipFiles".
+# Note: Use space between each value. This parameter is or not case sensitive
+# depending on URLNotCaseSensitive parameter.
+# Note: You can use regular expression values writing value with REGEX[value].
+# Change : Effective for new updates only
+# Example: "REGEX[marketing_directory] REGEX[office\/.*\.(csv|sxw)$]"
+# Default: ""
+#
+OnlyFiles=""
+
+
+# Add here a list of kind of url (file extension) that must be counted as
+# "Hit only" and not as a "Hit" and "Page/Download". You can set here all
+# image extensions as they are hit downloaded that must be counted but they
+# are not viewed pages. URLs with such extensions are not included in the TOP
+# Pages/URL report.
+# Note: If you want to exclude particular URLs from stats (No Pages and no
+# Hits reported), you must use SkipFiles parameter.
+# Change : Effective for new updates only
+# Example: "css js class gif jpg jpeg png bmp ico rss xml swf zip arj rar gz z bz2 wav mp3 wma mpg avi"
+# Example: ""
+# Default: "css js class gif jpg jpeg png bmp ico rss xml swf"
+#
+NotPageList="css js class gif jpg jpeg png bmp ico rss xml swf"
+
+
+# By default, AWStats considers that records found in web log file are
+# successful hits if HTTP code returned by server is a valid HTTP code (200
+# and 304). Any other code are reported in HTTP status chart.
+# Note that HTTP 'control codes', like redirection (302, 305) are not added by
+# default in this list as they are not pages seen by a visitor but are
+# protocol exchange codes to tell the browser to ask another page. Because
+# this other page will be counted and seen with a 200 or 304 code, if you 
+# add such codes, you will have 2 pages viewed reported for only one in facts.
+# Change : Effective for new updates only
+# Example: "200 304 302 305"
+# Default: "200 304"
+#
+ValidHTTPCodes="200 304"
+
+
+# By default, AWStats considers that records found in mail log file are
+# successful mail transfers if field that represent return code in analyzed
+# log file match values defined by this parameter.
+# Change : Effective for new updates only
+# Example: "1 250 200"
+# Default: "1 250"
+#
+ValidSMTPCodes="1 250"
+
+
+# By default, AWStats only records info on 404 'Document Not Found' errors.
+# At the cost of additional processing time, further info pages can be made
+# available by adding codes below.
+# Change : Effective for new updates only
+# Example: "403 404"
+# Default: "404"
+#
+TrapInfosForHTTPErrorCodes = "400 403 404"
+
+
+# Some web servers on some Operating systems (IIS-Windows) consider that a
+# login with same value but different case are the same login. To tell AWStats
+# to also consider them as one, set this parameter to 1.
+# Change : Effective for new updates only
+# Possible values: 0 or 1
+# Default: 0
+# 
+AuthenticatedUsersNotCaseSensitive=0
+
+
+# Some web servers on some Operating systems (IIS-Windows) considers that two
+# URLs with same value but different case are the same URL. To tell AWStats to
+# also considers them as one, set this parameter to 1.
+# Change : Effective for new updates only
+# Possible values: 0 or 1
+# Default: 0
+# 
+URLNotCaseSensitive=0
+
+
+# Keep or remove the anchor string you can find in some URLs.
+# Change : Effective for new updates only
+# Possible values: 0 or 1
+# Default: 0
+#
+URLWithAnchor=0
+
+
+# In URL links, "?" char is used to add parameter's list in URLs. Syntax is:
+# /mypage.html?param1=value1&param2=value2
+# However, some servers/sites use also other chars to isolate dynamic part of
+# their URLs. You can complete this list with all such characters.
+# Change : Effective for new updates only
+# Example: "?;,"
+# Default: "?;"
+#
+URLQuerySeparators="?;"
+
+
+# Keep or remove the query string to the URL in the statistics for individual
+# pages. This is primarily used to differentiate between the URLs of dynamic
+# pages. If set to 1, mypage.html?id=x and mypage.html?id=y are counted as two
+# different pages.
+# Warning, when set to 1, memory required to run AWStats is dramatically
+# increased if you have a lot of changing URLs (for example URLs with a random
+# id inside). Such web sites should not set this option to 1 or use seriously
+# the next parameter URLWithQueryWithOnlyFollowingParameters (or eventually 
+# URLWithQueryWithoutFollowingParameters).
+# Change : Effective for new updates only
+# Possible values:
+# 0 - URLs are cleaned from the query string (ie: "/mypage.html")
+# 1 - Full URL with query string is used     (ie: "/mypage.html?p=x&q=y")
+# Default: 0
+# 
+URLWithQuery=0
+
+
+# When URLWithQuery is on, you will get the full URL with all parameters in
+# URL reports. But among thoose parameters, sometimes you don't need a
+# particular parameter because it does not identify the page or because it's
+# a random ID changing for each access even if URL points to same page. In
+# such cases, it is higly recommanded to ask AWStats to keep only parameters
+# you need (if you know them) before counting, manipulating and storing URL.
+# Enter here list of wanted parameters. For example, with "param", one hit on
+# /mypage.cgi?param=abc&id=Yo4UomP9d  and  /mypage.cgi?param=abc&id=Mu8fdxl3r
+# will be reported as 2 hits on /mypage.cgi?param=abc
+# This parameter is not used when URLWithQuery is 0 and can't be used with
+# URLWithQueryWithoutFollowingParameters.
+# Change : Effective for new updates only
+# Example: "param"
+# Default: ""
+# 
+URLWithQueryWithOnlyFollowingParameters=""
+
+
+# When URLWithQuery is on, you will get the full URL with all parameters in
+# URL reports. But among thoose parameters, sometimes you don't need a
+# particular parameter because it does not identify the page or because it's
+# a random ID changing for each access even if URL points to same page. In
+# such cases, it is higly recommanded to ask AWStats to remove such parameters
+# from the URL before counting, manipulating and storing URL. Enter here list
+# of all non wanted parameters. For example if you enter "id", one hit on
+# /mypage.cgi?param=abc&id=Yo4UomP9d  and  /mypage.cgi?param=abc&id=Mu8fdxl3r
+# will be reported as 2 hits on /mypage.cgi?param=abc
+# This parameter is not used when URLWithQuery is 0 and can't be used with
+# URLWithQueryWithOnlyFollowingParameters.
+# Change : Effective for new updates only
+# Example: "PHPSESSID jsessionid"
+# Default: ""
+# 
+URLWithQueryWithoutFollowingParameters=""
+
+
+# Keep or remove the query string to the referrer URL in the statistics for
+# external referrer pages. This is used to differentiate between the URLs of
+# dynamic referrer pages. If set to 1, mypage.html?id=x and mypage.html?id=y
+# are counted as two different referrer pages.
+# Change : Effective for new updates only
+# Possible values:
+# 0 - Referrer URLs are cleaned from the query string (ie: "/mypage.html")
+# 1 - Full URL with query string is used      (ie: "/mypage.html?p=x&q=y")
+# Default: 0
+# 
+URLReferrerWithQuery=0
+
+
+# AWStats can detect setup problems or show you important informations to have
+# a better use. Keep this to 1, except if AWStats says you can change it.
+# Change : Effective immediatly
+# Possible values: 0 or 1
+# Default: 1
+#
+WarningMessages=1
+
+
+# When an error occurs, AWStats outputs a message related to errors. If you
+# want (in most cases for security reasons) to have no error messages, you
+# can set this parameter to your personalized generic message.
+# Change : Effective immediatly
+# Example: "An error occurred. Contact your Administrator"
+# Default: ""
+#
+ErrorMessages=""
+
+
+# AWStat can be run with debug=x parameter to output various informations
+# to help in debugging or solving troubles. If you want to allow this (not
+# enabled by default for security reasons), set this parameter to 0.
+# Change : Effective immediatly
+# Possible values: 0 or 1
+# Default: 0
+#
+DebugMessages=0
+
+
+# To help you to detect if your log format is good, AWStats reports an error
+# if all the first NbOfLinesForCorruptedLog lines have a format that does not
+# match the LogFormat parameter.
+# However, some worm virus attack on your web server can result in a very high
+# number of corrupted lines in your log. So if you experience awstats stop
+# because of bad virus records at the beginning of your log file, you can
+# increase this parameter (very rare).
+# Change : Effective for new updates only
+# Default: 50
+#
+NbOfLinesForCorruptedLog=50
+
+
+# For some particular integration needs, you may want to have CGI links to
+# point to another script than awstats.pl.
+# Use the name of this script in WrapperScript parameter.
+# Change : Effective immediatly
+# Example: "awstatslauncher.pl"
+# Example: "awstatswrapper.cgi?key=123"
+# Default: ""
+#
+WrapperScript=""
+
+
+# DecodeUA must be set to 1 if you use Roxen web server. This server converts
+# all spaces in user agent field into %20. This make the AWStats robots, OS
+# and browsers detection fail in some cases. Just change it to 1 if and only
+# if your web server is Roxen.
+# Change : Effective for new updates only
+# Possible values: 0 or 1
+# Default: 0
+#
+DecodeUA=0
+
+
+# MiscTrackerUrl can be used to make AWStats able to detect some miscellaneous
+# things, that can not be tracked on other way, like:
+# - Javascript disabled
+# - Java enabled
+# - Screen size
+# - Color depth
+# - Macromedia Director plugin
+# - Macromedia Shockwave plugin
+# - Realplayer G2 plugin
+# - QuickTime plugin
+# - Mediaplayer plugin
+# - Acrobat PDF plugin
+# To enable all these features, you must copy the awstats_misc_tracker.js file
+# into a /js/ directory stored in your web document root and add the following
+# HTML code at the end of your index page (but before </BODY>) :
+#
+# <script type="text/javascript" src="/js/awstats_misc_tracker.js"></script>
+# <noscript><img src="/js/awstats_misc_tracker.js?nojs=y" height=0 width=0 border=0 style="display: none"></noscript>
+#
+# If code is not added in index page, all those detection capabilities will be
+# disabled. You must also check that ShowScreenSizeStats and ShowMiscStats
+# parameters are set to 1 to make results appear in AWStats report page.
+# If you want to use another directory than /js/, you must also change the
+# awstatsmisctrackerurl variable into the awstats_misc_tracker.js file.
+# Change : Effective for new updates only.
+# Possible value: URL of javascript tracker file added in your HTML code.
+# Default: "/js/awstats_misc_tracker.js"
+#
+MiscTrackerUrl="/js/awstats_misc_tracker.js"
+
+
+# AddLinkToExternalCGIWrapper can be used to add a link to a wrapper script
+# into each title of Dolibarr reports. This can be used to add a wrapper
+# to download data into a CSV file for example.
+#
+# AddLinkToExternalCGIWrapper="/awstats/awdownloadcsv.pl"
+
+
+

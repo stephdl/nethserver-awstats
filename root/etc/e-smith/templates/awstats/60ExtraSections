@@ -1,0 +1,67 @@
+#-----------------------------------------------------------------------------
+# EXTRA SECTIONS
+#-----------------------------------------------------------------------------
+
+# You can define your own charts, you choose here what are rows and columns
+# keys. This feature is particularly useful for marketing purpose, tracking
+# products orders for example.
+# For this, edit all parameters of Extra section. Each set of parameter is a
+# different chart. For several charts, duplicate section changing the number.
+# Note: Each Extra section reduces AWStats speed by 8%.
+#
+# WARNING: A wrong setup of Extra section might result in too large arrays
+# that will consume all your memory, making AWStats unusable after several
+# updates, so be sure to setup it correctly.
+# In most cases, you don't need this feature.
+#
+# ExtraSectionNameX is title of your personalized chart.
+# ExtraSectionCodeFilterX is list of codes the record code field must match.
+#   Put an empty string for no test on code.
+# ExtraSectionConditionX are conditions you can use to count or not the hit,
+#   Use one of the field condition
+#   (URL,URLWITHQUERY,QUERY_STRING,REFERER,UA,HOSTINLOG,HOST,VHOST,extraX)
+#   and a regex to match, after a coma. Use "||" for "OR".
+# ExtraSectionFirstColumnTitleX is the first column title of the chart.
+# ExtraSectionFirstColumnValuesX is a string to tell AWStats which field to
+#   extract value from
+#   (URL,URLWITHQUERY,QUERY_STRING,REFERER,UA,HOSTINLOG,HOST,VHOST,extraX)
+#   and how to extract the value (using regex syntax). Each different value
+#   found will appear in first column of report on a different row. Be sure
+#   that list of different possible values will not grow indefinitely.
+# ExtraSectionFirstColumnFormatX is the string used to write value.
+# ExtraSectionStatTypesX are things you want to count. You can use standard
+#   code letters (P for pages,H for hits,B for bandwidth,L for last access).
+# ExtraSectionAddAverageRowX add a row at bottom of chart with average values.
+# ExtraSectionAddSumRowX add a row at bottom of chart with sum values.
+# MaxNbOfExtraX is maximum number of rows shown in chart.
+# MinHitExtraX is minimum number of hits required to be shown in chart.
+#
+
+# Example to report the 20 products the most ordered by "order.cgi" script
+#ExtraSectionName1="Product orders"
+#ExtraSectionCodeFilter1="200 304"
+#ExtraSectionCondition1="URL,\/cgi\-bin\/order\.cgi||URL,\/cgi\-bin\/order2\.cgi"
+#ExtraSectionFirstColumnTitle1="Product ID"
+#ExtraSectionFirstColumnValues1="QUERY_STRING,productid=([^&]+)"
+#ExtraSectionFirstColumnFormat1="%s"
+#ExtraSectionStatTypes1=PL
+#ExtraSectionAddAverageRow1=0
+#ExtraSectionAddSumRow1=1
+#MaxNbOfExtra1=20
+#MinHitExtra1=1
+
+
+# There is also a global parameter ExtraTrackedRowsLimit that limits the
+# number of possible rows an ExtraSection can report. This parameter is
+# here to protect too much memory use when you make a bad setup in your
+# ExtraSection. It applies to all ExtraSection independently meaning that
+# none ExtraSection can report more rows than value defined by ExtraTrackedRowsLimit.
+# If you know an ExtraSection will report more rows than its value, you should
+# increase this parameter or AWStats will stop with an error.
+# Example: 2000
+# Default: 500
+#
+ExtraTrackedRowsLimit=500
+
+
+
