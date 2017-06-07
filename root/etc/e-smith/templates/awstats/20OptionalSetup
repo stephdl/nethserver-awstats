@@ -205,28 +205,25 @@ DefaultFile="index.php index.html"
 use esmith::NetworksDB;
 use esmith::ConfigDB;
 use strict;
-my $idb = esmith::NetworksDB->open_ro() or die "Could not open network db";
-my $db = esmith::ConfigDB->open_ro() or die "Could not open config db";
 
+my $ndb = esmith::NetworksDB->open_ro() or die "Could not open network db";
+my $db = esmith::ConfigDB->open_ro() or die "Could not open config db";
 my $skipPrivateIp = $db->get_prop('awstats','skipPrivateIp')|| 'disabled';
 
 $OUT .= 'SkipHosts="127.0.0.1';
 
 if ($skipPrivateIp eq 'enabled') {
-
-    foreach my $i ($idb->get_all_by_prop('type' => 'ethernet')) {
-        my $nic = $i->key;
-        my $role = $idb->get_prop($nic,'role');
-        next if ($role ne 'green');
-        my $ip = $idb->get_prop($nic,'ipaddr');
-        $ip =~ s/\d+$//;
-        $ip =~ s/\./\\./g;
-        $OUT .= " REGEX[^$ip]";
+    foreach my $n ($ndb->local_access_spec()) {
+        my ($addr, $mask) = split('/', $n);
+        if ($addr ne '127.0.0.1') {
+            $addr =~ s/\d+$//;
+            $addr =~ s/\./\\./g;
+            $OUT .= " REGEX[^$addr]";
+        }
     }
 }
 $OUT .= '"';
 }
-
 
 # Do not include access from clients with a user agent that match following
 # criteria. If you want to exclude a robot, you should update the robots.pm
