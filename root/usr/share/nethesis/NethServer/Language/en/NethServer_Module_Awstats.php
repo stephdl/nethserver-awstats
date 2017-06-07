@@ -14,6 +14,7 @@ $L['Users_label'] = 'Allowed users to consult awstats pages';
 $L['AwstatsSettings_header'] = 'Settings of the logfile analyser';
 $L['AwstatDisabledByProp_label'] = 'Awstats is disabled';
 $L['Advanced_label'] = 'Advanced settings';
+$L['skipPrivateIp_label'] = 'Ignore hits from your local/trusted networks';
 $L['MaxNbOfDomain_label'] = 'Max. number of domains show';
 $L['MinHitDomain_label'] = 'Only show domains with min. hits';
 $L['MaxNbOfHostsShown_label'] = 'Max. number of hosts show';
