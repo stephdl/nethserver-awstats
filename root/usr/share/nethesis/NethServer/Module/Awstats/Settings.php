@@ -12,6 +12,32 @@ class  Settings extends \Nethgui\Controller\AbstractController
     $this->declareParameter('Minute', $this->createValidator()->integer()->greatThan(0)->lessThan(60), array('configuration', 'awstats', 'Minute'));
     $this->declareParameter('access', $this->createValidator()->memberOf('private','public'), array('configuration', 'awstats', 'access'));
     $this->declareParameter('Users', Validate::ANYTHING, array('configuration', 'awstats', 'Users'));
+    $this->declareParameter('skipPrivateIp', Validate::SERVICESTATUS, array('configuration', 'awstats', 'skipPrivateIp'));
+    $this->declareParameter('MaxNbOfDomain', Validate::POSITIVE_INTEGER, array('configuration', 'awstats', 'MaxNbOfDomain'));
+    $this->declareParameter('MinHitDomain', Validate::POSITIVE_INTEGER, array('configuration', 'awstats', 'MinHitDomain'));
+    $this->declareParameter('MaxNbOfHostsShown', Validate::POSITIVE_INTEGER, array('configuration', 'awstats', 'MaxNbOfHostsShown'));
+    $this->declareParameter('MinHitHost', Validate::POSITIVE_INTEGER, array('configuration', 'awstats', 'MinHitHost'));
+    $this->declareParameter('MaxNbOfLoginShown', Validate::POSITIVE_INTEGER, array('configuration', 'awstats', 'MaxNbOfLoginShown'));
+    $this->declareParameter('MinHitLogin', Validate::POSITIVE_INTEGER, array('configuration', 'awstats', 'MinHitLogin'));
+    $this->declareParameter('MaxNbOfRobotShown', Validate::POSITIVE_INTEGER, array('configuration', 'awstats', 'MaxNbOfRobotShown'));
+    $this->declareParameter('MinHitRobot', Validate::POSITIVE_INTEGER, array('configuration', 'awstats', 'MinHitRobot'));
+    $this->declareParameter('MaxNbOfDownloadsShown', Validate::POSITIVE_INTEGER, array('configuration', 'awstats', 'MaxNbOfDownloadsShown'));
+    $this->declareParameter('MinHitDownloads', Validate::POSITIVE_INTEGER, array('configuration', 'awstats', 'MinHitDownloads'));
+    $this->declareParameter('MaxNbOfPageShown', Validate::POSITIVE_INTEGER, array('configuration', 'awstats', 'MaxNbOfPageShown'));
+    $this->declareParameter('MinHitFile', Validate::POSITIVE_INTEGER, array('configuration', 'awstats', 'MinHitFile'));
+    $this->declareParameter('MaxNbOfOsShown', Validate::POSITIVE_INTEGER, array('configuration', 'awstats', 'MaxNbOfOsShown'));
+    $this->declareParameter('MinHitOs', Validate::POSITIVE_INTEGER, array('configuration', 'awstats', 'MinHitOs'));
+    $this->declareParameter('MaxNbOfBrowsersShown', Validate::POSITIVE_INTEGER, array('configuration', 'awstats', 'MaxNbOfBrowsersShown'));
+    $this->declareParameter('MinHitBrowser', Validate::POSITIVE_INTEGER, array('configuration', 'awstats', 'MinHitBrowser'));
+    $this->declareParameter('MaxNbOfScreenSizesShown', Validate::POSITIVE_INTEGER, array('configuration', 'awstats', 'MaxNbOfScreenSizesShown'));
+    $this->declareParameter('MinHitScreenSize', Validate::POSITIVE_INTEGER, array('configuration', 'awstats', 'MinHitScreenSize'));
+    $this->declareParameter('MaxNbOfRefererShown', Validate::POSITIVE_INTEGER, array('configuration', 'awstats', 'MaxNbOfRefererShown'));
+    $this->declareParameter('MinHitRefer', Validate::POSITIVE_INTEGER, array('configuration', 'awstats', 'MinHitRefer'));
+    $this->declareParameter('MaxNbOfKeyphrasesShown', Validate::POSITIVE_INTEGER, array('configuration', 'awstats', 'MaxNbOfKeyphrasesShown'));
+    $this->declareParameter('MinHitKeyphrase', Validate::POSITIVE_INTEGER, array('configuration', 'awstats', 'MinHitKeyphrase'));
+    $this->declareParameter('MaxNbOfKeywordsShown', Validate::POSITIVE_INTEGER, array('configuration', 'awstats', 'MaxNbOfKeywordsShown'));
+    $this->declareParameter('MinHitKeyword', Validate::POSITIVE_INTEGER, array('configuration', 'awstats', 'MinHitKeyword'));
+
     parent::initialize();
     }
 
