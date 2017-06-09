@@ -1,9 +1,9 @@
 <?php
 echo $view->header()->setAttribute('template', $T('AwstatsStatistics_Title'));
+$dbConf = $view->getModule()->getPlatform()->getDatabase('configuration');
+$dbVhosts = $view->getModule()->getPlatform()->getDatabase('vhosts');
 
-$awstatsStatus = $view->getModule()->getPlatform()->getDatabase('configuration')->getProp('awstats','status');
-
-if ( $awstatsStatus !== 'enabled') {
+if ($dbConf->getProp('awstats', 'status') !== 'enabled') {
    echo $view->translate('AwstatDisabledByProp_label');
    return;
 }
@@ -23,23 +23,22 @@ echo '<th>'.$view->translate('Virtualhosts_label').'</th>';
 echo '<th>'.$view->translate('AwstatsDomainURL_label').'</th>';
 echo '</tr>';
 
-$servername = $view->getModule()->getPlatform()->getDatabase('vhosts')->getAll();
-foreach ($servername as $key=>$props) {
 
-    $status = $view->getModule()->getPlatform()->getDatabase('vhosts')->getProp("$key",'status');
+foreach ($dbVhosts->getAll() as $vhost=>$props) {
+
+    $status = $dbVhosts->getProp("$vhost",'status');
     if ($status  !== 'enabled') {
         continue;
     }
 
-    $sn = $view->getModule()->getPlatform()->getDatabase('vhosts')->getProp("$key",'ServerNames');
-    foreach (explode(',', $sn) as $sn2) {
+    $ServerNames = $dbVhosts->getProp("$vhost",'ServerNames');
+    foreach (explode(',', $ServerNames) as $Name) {
         $host = explode(':',$_SERVER['HTTP_HOST']);
-        $url = "https://".$host[0]."/awstats/awstats.pl?config=".$sn2.'.vhost';
+        $url = "https://".$host[0]."/awstats/awstats.pl?config=".$Name.'.vhost';
         echo '<tr>';
-        echo "<td><b>$key</b></td>";
-        echo "<td><a href='$url' target='_blank'><font color='blue'> $sn2</font></a></td>";
+        echo "<td><b>$vhost</b></td>";
+        echo "<td><a href='$url' target='_blank'><font color='blue'> $Name</font></a></td>";
+        echo '</tr>';
     }
 }
-
-echo '</tr>';
 echo "</table>";
