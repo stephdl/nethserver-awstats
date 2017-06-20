@@ -10,6 +10,7 @@ echo $view->panel()
 ->insert($view->textArea('Users', $view::LABEL_ABOVE)->setAttribute('dimensions', '5x30')->setAttribute('placeholder', $view['Users_default']))
 ->insert($view->fieldset('', $view::FIELDSET_EXPANDABLE)->setAttribute('template', $T('Advanced_label'))
 
+->insert($view->elementList()
 ->insert($view->checkBox('skipPrivateIp', 'enabled')->setAttribute('uncheckedValue', 'disabled'))
 ->insert($view->checkBox('DnsLookup', 'enabled')->setAttribute('uncheckedValue', 'disabled'))
 
@@ -62,6 +63,6 @@ echo $view->panel()
 ->insert($view->textInput('MinHitKeyword'))
 )
 
-));
+)));
 echo $view->buttonList($view::BUTTON_SUBMIT); # | $view::BUTTON_HELP);
 
