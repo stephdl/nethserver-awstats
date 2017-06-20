@@ -1,2 +1,3 @@
+
     #redirect access log for awstats statistics
     CustomLog /var/log/httpd/access.{{$ServerName}}.log combined
