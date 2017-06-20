@@ -37,6 +37,7 @@ class  Settings extends \Nethgui\Controller\AbstractController
     $this->declareParameter('MinHitKeyphrase', Validate::POSITIVE_INTEGER, array('configuration', 'awstats', 'MinHitKeyphrase'));
     $this->declareParameter('MaxNbOfKeywordsShown', Validate::POSITIVE_INTEGER, array('configuration', 'awstats', 'MaxNbOfKeywordsShown'));
     $this->declareParameter('MinHitKeyword', Validate::POSITIVE_INTEGER, array('configuration', 'awstats', 'MinHitKeyword'));
+    $this->declareParameter('DnsLookup', Validate::SERVICESTATUS, array('configuration', 'awstats', 'DnsLookup'));
 
     parent::initialize();
     }

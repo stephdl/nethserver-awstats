@@ -11,6 +11,7 @@ echo $view->panel()
 ->insert($view->fieldset('', $view::FIELDSET_EXPANDABLE)->setAttribute('template', $T('Advanced_label'))
 
 ->insert($view->checkBox('skipPrivateIp', 'enabled')->setAttribute('uncheckedValue', 'disabled'))
+->insert($view->checkBox('DnsLookup', 'enabled')->setAttribute('uncheckedValue', 'disabled'))
 
 ->insert ($view->columns()
 ->insert($view->textInput('MaxNbOfDomain'))

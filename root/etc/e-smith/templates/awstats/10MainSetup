@@ -183,8 +183,15 @@ HostAliases="{{$ServerName}}"
 # 2 - DNS Lookup is made only from static DNS cache file (if it exists)
 # Default: 2
 # 
-DNSLookup=1
-
+{
+my $lookup = $awstats{'DnsLookup'} || 'disabled';
+if ($lookup eq 'enabled') {
+    $OUT .= 'DNSLookup=1';
+}
+else {
+    $OUT .= 'DNSLookup=0';
+}
+}
 
 # When AWStats updates its statistics, it stores results of its analysis in 
 # files (AWStats database). All those files are written in the directory
