@@ -38,6 +38,8 @@ class  Settings extends \Nethgui\Controller\AbstractController
     $this->declareParameter('MaxNbOfKeywordsShown', Validate::POSITIVE_INTEGER, array('configuration', 'awstats', 'MaxNbOfKeywordsShown'));
     $this->declareParameter('MinHitKeyword', Validate::POSITIVE_INTEGER, array('configuration', 'awstats', 'MinHitKeyword'));
     $this->declareParameter('DnsLookup', Validate::SERVICESTATUS, array('configuration', 'awstats', 'DnsLookup'));
+    $this->declareParameter('GeoIP', $this->createValidator()->memberOf('#',''), array('configuration', 'awstats', 'GeoIP'));
+    $this->declareParameter('GeoIPv6', $this->createValidator()->memberOf('#',''), array('configuration', 'awstats', 'GeoIPv6'));
 
     parent::initialize();
     }
