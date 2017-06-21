@@ -40,4 +40,4 @@ $L['MinHitKeyphrase_label'] = 'Only show keyphrases with min. hits';
 $L['MaxNbOfKeywordsShown_label'] = 'Max. number of keywords show';
 $L['MinHitKeyword_label'] = 'Only show keywords with min. hits';
 $L['DnsLookup_label'] = 'Report host by name instead of ip address (DnsLookup)';
-$L['DnsLookup_label'] = 'Report host by name instead of ip address (GeoIP database)';
+$L['GeoIP_label'] = 'Report host by name instead of ip address (GeoIP database)';
