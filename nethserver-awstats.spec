@@ -1,7 +1,7 @@
 Summary: nethserver - configure nfs server
 %define name nethserver-awstats
 Name: %{name}
-%define version 0.1.3
+%define version 0.1.4
 %define release 1
 Version: %{version}
 Release: %{release}%{?dist}
@@ -18,6 +18,11 @@ BuildArch: noarch
 configure awstats for apache analytics
 
 %changelog
+* Wed Jun 21 2017 stephane de Labrusse <stephdl@de-labrusse.fr> 0.1.4.ns7
+- elementList added in template
+- ip6 plugin activated
+- DnsLookup & GeoIP available option in the panel
+
 * Thu Jun 08 2017 stephane de Labrusse <stephdl@de-labrusse.fr> 0.1.3.ns7
 - First release to NS7
 
