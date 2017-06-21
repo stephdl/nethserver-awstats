@@ -12,6 +12,17 @@
 # PLUGIN: IPv6 used by the template nethserver-awstats
 #
 
+
+# PLUGIN: GeoIP6
+# REQUIRED MODULES: Geo::IP or Geo::IP::PurePerl (from Maxmind, version >= 1.40)
+# PARAMETERS: [GEOIP_STANDARD | GEOIP_MEMORY_CACHE] [/pathto/geoipv6.dat[+/pathto/override.txt]]
+# DESCRIPTION: Builds a country chart and adds an entry to the hosts 
+# table with country name
+# works with IPv4 and also IPv6 addresses
+# Replace spaces in the path of geoip data file with string "%20".
+#
+#LoadPlugin="geoip6 GEOIP_STANDARD /usr/share/GeoIP/GeoIPv6.dat"
+
 # PLUGIN: Tooltips
 # REQUIRED MODULES: None
 # PARAMETERS: None

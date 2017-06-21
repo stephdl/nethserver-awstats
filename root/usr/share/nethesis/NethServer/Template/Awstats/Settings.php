@@ -14,7 +14,6 @@ echo $view->panel()
 ->insert($view->checkBox('skipPrivateIp', 'enabled')->setAttribute('uncheckedValue', 'disabled'))
 ->insert($view->checkBox('DnsLookup', 'enabled')->setAttribute('uncheckedValue', 'disabled'))
 ->insert($view->checkBox('GeoIP', '')->setAttribute('uncheckedValue', '#'))
-->insert($view->checkBox('GeoIPv6', '')->setAttribute('uncheckedValue', '#'))
 
 ->insert ($view->columns()
 ->insert($view->textInput('MaxNbOfDomain'))
