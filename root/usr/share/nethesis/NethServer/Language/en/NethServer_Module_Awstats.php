@@ -4,6 +4,7 @@ $L['Settings_Title'] = 'Settings';
 $L['Statistics_Title'] = 'Statistics';
 $L['AwstatsStatistics_Title'] = 'Consult Web Statistics';
 $L['VirtualhostsStatistics_label'] = 'Virtualhost statistics';
+$L['DefaultVirtualhost_label'] = 'Default virtualhost';
 $L['Virtualhosts_label'] = 'Virtualhosts';
 $L['AwstatsDomainURL_label'] = 'Domains';
 $L['status_label'] = 'Status';
