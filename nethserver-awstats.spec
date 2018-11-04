@@ -1,7 +1,7 @@
 Summary: nethserver - configure nfs server
 %define name nethserver-awstats
 Name: %{name}
-%define version 0.1.5
+%define version 0.1.6
 %define release 1
 Version: %{version}
 Release: %{release}%{?dist}
@@ -18,6 +18,9 @@ BuildArch: noarch
 configure awstats for apache analytics
 
 %changelog
+* Sun Nov 4 2018 stephane de Labrusse <stephdl@de-labrusse.fr> 0.1.6.ns7 
+- URL and table to browse the default virtualhost statistics
+
 * Sun Nov 12 2017 stephane de Labrusse <stephdl@de-labrusse.fr> 0.1.5.ns7
 - translation of the user error message
 
