@@ -43,3 +43,6 @@ $L['MinHitKeyword_label'] = 'Only show keywords with min. hits';
 $L['DnsLookup_label'] = 'Report host by name (DnsLookup)';
 $L['GeoIP_label'] = 'Report host by country (GeoIP database)';
 $L['Must be a user name'] = '"${0}" is not a valid user name';
+$L['ManualStatistics_label'] = 'Awstats Statistics';
+$L['Configuration_label'] = 'Manual Configuration';
+$L['StatisticsURL_label'] = 'Statistic page';

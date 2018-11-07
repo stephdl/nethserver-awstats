@@ -20,16 +20,6 @@ table, th, td {
 }
 </style>';
 
-#default virtualhost table
-echo '<table style="width:30%">';
-$urldefault = "https://".$host[0]."/awstats/awstats.pl?config=".$systemName.'.'.$domainName;
-echo '<tr>';
-echo "<td><b>".$view->translate('DefaultVirtualhost_label')."</b></td>";
-echo "<td><a href='$urldefault' target='_blank'><font color='blue'>$systemName.$domainName</font></a></td>";
-echo '</tr>';
-echo "</table>";
-echo '<br>';
-
 #nethserver-virtualhost table
 echo '<table style="width:30%">';
 echo '<caption>'.$view->translate('VirtualhostsStatistics_label').'</caption>';
@@ -54,5 +44,39 @@ foreach ($dbVhosts->getAll() as $vhost=>$props) {
         echo "<td><a href='$url' target='_blank'><font color='blue'> $Name</font></a></td>";
         echo '</tr>';
     }
+}
+echo "</table>";
+
+echo "<br>";
+
+#manual configuration table as /etc/awstats/awstats.domain.com.conf
+echo '<table style="width:30%">';
+echo '<caption>'.$view->translate('ManualStatistics_label').'</caption>';
+echo '<tr>';
+echo '<th>'.$view->translate('Configuration_label').'</th>';
+echo '<th>'.$view->translate('StatisticsURL_label').'</th>';
+echo '</tr>';
+
+$values = array();
+$path = '/etc/awstats/';
+$values = glob( $path . '*.{conf}', GLOB_BRACE);
+
+# clean name
+$values= str_replace($path,"",$values);
+$values= str_replace("awstats.","",$values);
+$values= str_replace(".conf","",$values);
+
+#we remove some conf
+$values= array_diff($values, array ('model','localhost.localdomain'));
+
+foreach ($values as $Name) {
+    if (preg_match ("/vhost/", $Name)) {
+        continue;
+    }
+    $url = "https://".$host[0]."/awstats/awstats.pl?config=".$Name;
+    echo '<tr>';
+    echo "<td><b>$Name</b></td>";
+    echo "<td><a href='$url' target='_blank'><font color='blue'> $Name</font></a></td>";
+    echo '</tr>';
 }
 echo "</table>";
