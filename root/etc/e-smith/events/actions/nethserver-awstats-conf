@@ -4,6 +4,8 @@ use esmith::templates;
 use esmith::ConfigDB;
 my $vdb = esmith::ConfigDB->open_ro('vhosts') || die("Can't open vhosts db");
 my $db = esmith::ConfigDB->open_ro('configuration') || die("Can't open config db");
+my $SystemName = $db->get_value('SystemName');
+my $DomainName = $db->get_value('DomainName');
 
 my $status = $db->get_prop('awstats','status')|| 'disabled';
 my $outDir = '/etc/awstats/';
@@ -37,3 +39,12 @@ foreach my $vhost ($vdb->get_all_by_prop('type'=>'vhost')) {
                 });
     }
 }
+
+                $OUT .= esmith::templates::processTemplate({
+                    MORE_DATA => \%vhostData,
+                    TEMPLATE_PATH => 'awstats',
+                    OUTPUT_TYPE => 'file',
+                    OUTPUT_PREFIX => $outDir,
+                    OUTPUT_FILENAME => 'awstats.'.$SystemName.'.'.$DomainName.'.conf'
+                });
+
