@@ -67,7 +67,7 @@ $values= str_replace("awstats.","",$values);
 $values= str_replace(".conf","",$values);
 
 #we remove some conf
-$values= array_diff($values, array ('model','localhost.localdomain'));
+$values= array_diff($values, array ('model','localhost.localdomain','maillog'));
 
 foreach ($values as $Name) {
     if (preg_match ("/vhost/", $Name)) {
@@ -79,4 +79,16 @@ foreach ($values as $Name) {
     echo "<td><a href='$url' target='_blank'><font color='blue'> $Name</font></a></td>";
     echo '</tr>';
 }
+echo "</table>";
+
+echo '<br>';
+
+#default maillog stat
+$urldefault = "https://".$host[0]."/awstats/awstats.pl?config=maillog";
+echo '<table style="width:30%">';
+echo '<caption>'.$view->translate('MailStatistics_label').'</caption>';
+echo '<tr>';
+echo "<td><b>".$view->translate('MailStatistics_label')."</b></td>";
+echo "<td><a href='$urldefault' target='_blank'><font color='blue'>$systemName.$domainName</font></a></td>";
+echo '</tr>';
 echo "</table>";
