@@ -40,11 +40,14 @@ foreach my $vhost ($vdb->get_all_by_prop('type'=>'vhost')) {
     }
 }
 
-                $OUT .= esmith::templates::processTemplate({
-                    MORE_DATA => \%vhostData,
-                    TEMPLATE_PATH => 'awstats',
-                    OUTPUT_TYPE => 'file',
-                    OUTPUT_PREFIX => $outDir,
-                    OUTPUT_FILENAME => 'awstats.'.$SystemName.'.'.$DomainName.'.conf'
-                });
+# Build the SystemName.DomainName awstats configuration
+ 
+$vhostData{ServerName} = $SystemName.'.'.$DomainName;
+$OUT .= esmith::templates::processTemplate({
+    MORE_DATA => \%vhostData,
+    TEMPLATE_PATH => 'awstats',
+    OUTPUT_TYPE => 'file',
+    OUTPUT_PREFIX => $outDir,
+    OUTPUT_FILENAME => 'awstats.'. $vhostData{ServerName}.'.conf'
+});
 
