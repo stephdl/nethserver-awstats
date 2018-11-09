@@ -15,7 +15,7 @@ event_services( $event , qw(
 #Template to expand
 templates2events("/etc/httpd/conf.d/default-virtualhost.inc", $event);
 templates2events("/etc/httpd/conf.d/virtualhosts.conf", $event);
-
+templates2events("/etc/awstats/awstats.maillog.conf", $event);
 
 foreach (qw( cron.d/awstats cron.hourly/awstats httpd/conf.d/awstats.conf))
 {

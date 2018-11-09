@@ -1,0 +1,422 @@
+#-----------------------------------------------------------------------------
+# OPTIONAL APPEARANCE SETUP SECTION (Not required but increase AWStats features)
+#-----------------------------------------------------------------------------
+
+# When you use AWStats as a CGI, you can have the reports shown in HTML frames.
+# Frames are only available for report viewed dynamically. When you build
+# pages from command line, this option is not used and no frames are built.
+# Possible values: 0 or 1
+# Default: 1
+#
+UseFramesWhenCGI=1
+
+
+# This parameter asks your browser to open detailed reports into a different
+# window than the main page.
+# Possible values:
+# 0 - Open all in same browser window
+# 1 - Open detailed reports in another window except if using frames
+# 2 - Open always in a different window even if reports are framed
+# Default: 1
+#
+DetailedReportsOnNewWindows=1
+
+
+# You can add, in the HTML report page, a cache lifetime (in seconds) that
+# will be returned to the browser in HTTP header answer by server.
+# This parameter is not used when reports are built with -staticlinks option.
+# Example: 3600
+# Default: 0
+#
+Expires=3600
+
+
+# To avoid too large web pages, you can ask AWStats to limit number of rows of
+# all reported charts to this number when no other limits apply.
+# Default: 10000
+#
+MaxRowsInHTMLOutput=10000
+
+
+# Set your primary language (ISO-639-1 language codes).
+# Possible values:
+#  Albanian=al, Bosnian=ba, Bulgarian=bg, Catalan=ca,
+#  Chinese (Taiwan)=tw, Chinese (Simpliefied)=cn, Croatian=hr, Czech=cz,
+#  Danish=dk, Dutch=nl, English=en, Estonian=et, Euskara=eu, Finnish=fi,
+#  French=fr, Galician=gl, German=de, Greek=gr, Hebrew=he, Hungarian=hu,
+#  Icelandic=is, Indonesian=id, Italian=it, Japanese=jp, Korean=ko,
+#  Latvian=lv, Norwegian (Nynorsk)=nn, Norwegian (Bokmal)=nb, Polish=pl,
+#  Portuguese=pt, Portuguese (Brazilian)=br, Romanian=ro, Russian=ru,
+#  Serbian=sr, Slovak=sk, Slovenian=si, Spanish=es, Swedish=se, Turkish=tr,
+#  Ukrainian=ua, Welsh=cy.
+#  First available language accepted by browser=auto
+# Default: "auto"
+#
+Lang="auto"
+
+
+# Set the location of language files.
+# Example: "/usr/share/awstats/lang"
+# Default: "./lang" (means lang directory is in same location than awstats.pl)
+#
+DirLang="./lang"
+
+
+# Show menu header with reports' links
+# Possible values: 0 or 1
+# Default: 1
+#
+ShowMenu=1
+
+
+# You choose here which reports you want to see in the main page and what you
+# want to see in those reports.
+# Possible values:
+#  0  - Report is not shown at all
+#  1  - Report is shown in main page with an entry in menu and default columns
+# XYZ - Report shows column informations defined by code X,Y,Z...
+#       X,Y,Z... are code letters among the following:
+#        U = Unique visitors
+#        V = Visits
+#        P = Number of pages
+#        H = Number of hits (or mails)
+#        B = Bandwidth (or total mail size for mail logs)
+#        L = Last access date
+#        E = Entry pages
+#        X = Exit pages
+#        C = Web compression (mod_gzip,mod_deflate)
+#        M = Average mail size (mail logs)
+#
+
+# Show monthly summary
+# Context: Web, Streaming, Mail, Ftp
+# Default: UVPHB, Possible column codes: UVPHB
+ShowSummary=HB
+
+# Show monthly chart
+# Context: Web, Streaming, Mail, Ftp
+# Default: UVPHB, Possible column codes: UVPHB
+ShowMonthStats=HB
+
+# Show days of month chart
+# Context: Web, Streaming, Mail, Ftp
+# Default: VPHB, Possible column codes: VPHB
+ShowDaysOfMonthStats=HB
+
+# Show days of week chart
+# Context: Web, Streaming, Mail, Ftp
+# Default: PHB, Possible column codes: PHB
+ShowDaysOfWeekStats=HB
+
+# Show hourly chart
+# Context: Web, Streaming, Mail, Ftp
+# Default: PHB, Possible column codes: PHB
+ShowHoursStats=HB
+
+# Show domains/country chart
+# Context: Web, Streaming, Mail, Ftp
+# Default: PHB, Possible column codes: UVPHB
+ShowDomainsStats=0
+
+# Show hosts chart
+# Context: Web, Streaming, Mail, Ftp
+# Default: PHBL, Possible column codes: PHBL
+ShowHostsStats=HBL
+
+# Show authenticated users chart
+# Context: Web, Streaming, Ftp
+# Default: 0, Possible column codes: PHBL
+ShowAuthenticatedUsers=0
+
+# Show robots chart
+# Context: Web, Streaming
+# Default: HBL, Possible column codes: HBL
+ShowRobotsStats=0
+
+# Show worms chart
+# Context: Web, Streaming
+# Default: 0 (If set to other than 0, see also LevelForWormsDetection), Possible column codes: HBL
+ShowWormsStats=0
+
+# Show email senders chart (For use when analyzing mail log files)
+# Context: Mail
+# Default: 0, Possible column codes: HBML
+ShowEMailSenders=HBL
+
+# Show email receivers chart (For use when analyzing mail log files)
+# Context: Mail
+# Default: 0, Possible column codes: HBML
+ShowEMailReceivers=HBL
+
+# Show session chart
+# Context: Web, Streaming, Ftp
+# Default: 1, Possible column codes: None
+ShowSessionsStats=0
+
+# Show pages-url chart.
+# Context: Web, Streaming, Ftp
+# Default: PBEX, Possible column codes: PBEX
+ShowPagesStats=0
+
+# Show file types chart.
+# Context: Web, Streaming, Ftp
+# Default: HB, Possible column codes: HBC
+ShowFileTypesStats=0
+
+# Show file size chart (Not yet available)
+# Context: Web, Streaming, Mail, Ftp
+# Default: 1, Possible column codes: None
+ShowFileSizesStats=0
+
+# Show downloads chart.
+# Context: Web, Streaming, Ftp
+# Default: HB, Possible column codes: HB
+ShowDownloadsStats=0
+
+# Show operating systems chart
+# Context: Web, Streaming, Ftp
+# Default: 1, Possible column codes: None
+ShowOSStats=0
+
+# Show browsers chart
+# Context: Web, Streaming
+# Default: 1, Possible column codes: None
+ShowBrowsersStats=0
+
+# Show screen size chart
+# Context: Web, Streaming
+# Default: 0 (If set to 1, see also MiscTrackerUrl), Possible column codes: None
+ShowScreenSizeStats=0
+
+# Show origin chart
+# Context: Web, Streaming
+# Default: PH, Possible column codes: PH
+ShowOriginStats=0
+
+# Show keyphrases chart
+# Context: Web, Streaming
+# Default: 1, Possible column codes: None
+ShowKeyphrasesStats=0
+
+# Show keywords chart
+# Context: Web, Streaming
+# Default: 1, Possible column codes: None
+ShowKeywordsStats=0
+
+# Show misc chart
+# Context: Web, Streaming
+# Default: a (See also MiscTrackerUrl parameter), Possible column codes: anjdfrqwp
+ShowMiscStats=0
+
+# Show http errors chart
+# Context: Web, Streaming
+# Default: 1, Possible column codes: None
+ShowHTTPErrorsStats=0
+
+# Show http error page details
+# Context: Web, Streaming
+# Default: R, Possible column codes: RH
+ShowHTTPErrorsPageDetail=0
+
+# Show smtp errors chart (For use when analyzing mail log files)
+# Context: Mail
+# Default: 0, Possible column codes: None
+ShowSMTPErrorsStats=1
+
+# Show the cluster report (Your LogFormat must contains the %cluster tag)
+# Context: Web, Streaming, Ftp
+# Default: 0, Possible column codes: PHB
+ShowClusterStats=0
+
+
+# Some graphical reports are followed by the data array of values.
+# If you don't want this array (to reduce the report size for example), you
+# can set thoose options to 0.
+# Possible values: 0 or 1
+# Default: 1
+#
+# Data array values for the ShowMonthStats report
+AddDataArrayMonthStats=1
+# Data array values for the ShowDaysOfMonthStats report
+AddDataArrayShowDaysOfMonthStats=1
+# Data array values for the ShowDaysOfWeekStats report
+AddDataArrayShowDaysOfWeekStats=1
+# Data array values for the ShowHoursStats report
+AddDataArrayShowHoursStats=1
+
+
+# In the Origin chart, you have stats on where your hits came from. You can
+# include hits on pages that come from pages of same sites in this chart.
+# Possible values: 0 or 1
+# Default: 0
+#
+IncludeInternalLinksInOriginSection=0
+
+
+# The following parameters can be used to choose the maximum number of lines
+# shown for the particular following reports.
+#
+# Stats by countries/domains
+MaxNbOfDomain = 10
+MinHitDomain  = 1
+# Stats by hosts
+MaxNbOfHostsShown = 10
+MinHitHost    = 1
+# Stats by authenticated users
+MaxNbOfLoginShown = 10
+MinHitLogin   = 1
+# Stats by robots
+MaxNbOfRobotShown = 10
+MinHitRobot   = 1
+# Stats for Downloads
+MaxNbOfDownloadsShown = 10
+MinHitDownloads = 1
+# Stats by pages
+MaxNbOfPageShown = 10
+MinHitFile    = 1
+# Stats by OS
+MaxNbOfOsShown = 10
+MinHitOs      = 1
+# Stats by browsers
+MaxNbOfBrowsersShown = 10
+MinHitBrowser = 1
+# Stats by screen size
+MaxNbOfScreenSizesShown = 5
+MinHitScreenSize = 1
+# Stats by window size (following 2 parameters are not yet used)
+MaxNbOfWindowSizesShown = 5
+MinHitWindowSize = 1
+# Stats by referers
+MaxNbOfRefererShown = 10
+MinHitRefer   = 1
+# Stats for keyphrases
+MaxNbOfKeyphrasesShown = 10
+MinHitKeyphrase = 1
+# Stats for keywords
+MaxNbOfKeywordsShown = 10
+MinHitKeyword = 1
+# Stats for sender or receiver emails
+MaxNbOfEMailsShown = 20
+MinHitEMail   = 1
+
+
+# Choose if you want the week report to start on sunday or monday
+# Possible values:
+# 0 - Week starts on sunday
+# 1 - Week starts on monday
+# Default: 1
+#
+FirstDayOfWeek=1
+
+
+# List of visible flags that link to other language translations.
+# See Lang parameter for list of allowed flag/language codes.
+# If you don't want any flag link, set ShowFlagLinks to "".
+# This parameter is used only if ShowMenu parameter is set to 1.
+# Possible values: "" or "language_codes_separated_by_space"
+# Example: "en es fr nl de"
+# Default: ""
+#
+ShowFlagLinks=""
+
+
+# Each URL, shown in stats report views, are links you can click.
+# Possible values: 0 or 1
+# Default: 1
+#
+ShowLinksOnUrl=1
+
+
+# When AWStats builds HTML links in its report pages, it starts those links
+# with "http://". However some links might be HTTPS links, so you can enter
+# here the root of all your HTTPS links. If all your site is a SSL web site,
+# just enter "/".
+# This parameter is not used if ShowLinksOnUrl is 0.
+# Example: "/shopping"
+# Example: "/"
+# Default: ""
+#
+UseHTTPSLinkForUrl=""
+
+
+# Maximum length of URL part shown on stats page (number of characters).
+# This affects only URL visible text, links still work.
+# Default: 64
+#
+MaxLengthOfShownURL=64
+
+
+# You can enter HTML code that will be added at the top of AWStats reports.
+# Default: ""
+#
+HTMLHeadSection=""
+
+
+# You can enter HTML code that will be added at the end of AWStats reports.
+# Great to add advert ban.
+# Default: ""
+#
+HTMLEndSection=""
+
+
+# By default AWStats page contains meta tag robots=noindex,nofollow
+# If you want to have your statistics to be indexed, set this option to 1.
+# Default: 0
+#
+MetaRobot=0
+
+
+# You can set Logo and LogoLink to use your own logo.
+# Logo must be the name of image file (must be in $DirIcons/other directory).
+# LogoLink is the expected URL when clicking on Logo.
+# Default: "awstats_logo6.png"
+#
+Logo="awstats_logo6.png"
+LogoLink="http://www.awstats.org"
+
+
+# Value of maximum bar width/height for horizontal/vertical HTML graphics bars.
+# Default: 260/90
+#
+BarWidth   = 260
+BarHeight  = 90
+
+
+# You can ask AWStats to use a particular CSS (Cascading Style Sheet) to
+# change its look. To create a style sheet, you can use samples provided with
+# AWStats in wwwroot/css directory.
+# Example: "/awstatscss/awstats_bw.css"
+# Example: "/css/awstats_bw.css"
+# Default: ""
+#
+StyleSheet=""
+
+
+# Those color parameters can be used (if StyleSheet parameter is not used)
+# to change AWStats look.
+# Example: color_name="RRGGBB"	# RRGGBB is Red Green Blue components in Hex
+#
+color_Background="FFFFFF"		# Background color for main page (Default = "FFFFFF")
+color_TableBGTitle="CCCCDD"		# Background color for table title (Default = "CCCCDD")
+color_TableTitle="000000"		# Table title font color (Default = "000000")
+color_TableBG="CCCCDD"			# Background color for table (Default = "CCCCDD")
+color_TableRowTitle="FFFFFF"	# Table row title font color (Default = "FFFFFF")
+color_TableBGRowTitle="ECECEC"	# Background color for row title (Default = "ECECEC")
+color_TableBorder="ECECEC"		# Table border color (Default = "ECECEC")
+color_text="000000"				# Color of text (Default = "000000")
+color_textpercent="606060"		# Color of text for percent values (Default = "606060")
+color_titletext="000000"		# Color of text title within colored Title Rows (Default = "000000")
+color_weekend="EAEAEA"			# Color for week-end days (Default = "EAEAEA")
+color_link="0011BB"				# Color of HTML links (Default = "0011BB")
+color_hover="605040"			# Color of HTML on-mouseover links (Default = "605040")
+color_u="FFAA66"				# Background color for number of unique visitors (Default = "FFAA66")
+color_v="F4F090"				# Background color for number of visites (Default = "F4F090")
+color_p="4477DD"				# Background color for number of pages (Default = "4477DD")
+color_h="66DDEE"				# Background color for number of hits (Default = "66DDEE")
+color_k="2EA495"				# Background color for number of bytes (Default = "2EA495")
+color_s="8888DD"				# Background color for number of search (Default = "8888DD")
+color_e="CEC2E8"				# Background color for number of entry pages (Default = "CEC2E8")
+color_x="C1B2E2"				# Background color for number of exit pages (Default = "C1B2E2")
+
+
+
