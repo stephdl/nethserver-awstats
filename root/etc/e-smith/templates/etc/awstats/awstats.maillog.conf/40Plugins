@@ -165,7 +165,7 @@ LoadPlugin="ipv6"
 #
 #LoadPlugin="geoip6 GEOIP_STANDARD /pathto/GeoIPv6.dat"
 
-{$awstats{'GeoIP'} || ''}LoadPlugin="geoip GEOIP_STANDARD /usr/share/GeoIP/GeoIPv6.dat"
+{$awstats{'GeoIP'} || ''}LoadPlugin="geoip6 GEOIP_STANDARD /usr/share/GeoIP/GeoIPv6.dat"
 
 # PLUGIN: GeoIP_City_Maxmind
 # REQUIRED MODULES: Geo::IP or Geo::IP::PurePerl (from Maxmind)

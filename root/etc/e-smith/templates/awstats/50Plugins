@@ -30,4 +30,4 @@ LoadPlugin="ipv6"
 # works with IPv4 and also IPv6 addresses
 # Replace spaces in the path of geoip data file with string "%20".
 #
-{$awstats{'GeoIP'} || ''}LoadPlugin="geoip GEOIP_STANDARD /usr/share/GeoIP/GeoIPv6.dat"
+{$awstats{'GeoIP'} || ''}LoadPlugin="geoip6 GEOIP_STANDARD /usr/share/GeoIP/GeoIPv6.dat"
