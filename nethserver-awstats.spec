@@ -1,7 +1,7 @@
 Summary: nethserver - configure nfs server
 %define name nethserver-awstats
 Name: %{name}
-%define version 0.1.7
+%define version 0.1.8
 %define release 1
 Version: %{version}
 Release: %{release}%{?dist}
@@ -18,6 +18,9 @@ BuildArch: noarch
 configure awstats for apache analytics
 
 %changelog
+* Fri Nov 9 2018 stephane de labrusse <stephdl@de-labrusse.fr> 0.1.8.ns7
+- Enable Email statistics and geoipv6
+
 * Wed Nov 7 2018 stephane de labrusse <stephdl@de-labrusse.fr> 0.1.7.ns7
 - Display the manual configuration in the statistics tab
 
