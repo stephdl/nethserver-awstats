@@ -14,6 +14,8 @@ echo $view->panel()
 ->insert($view->checkBox('skipPrivateIp', 'enabled')->setAttribute('uncheckedValue', 'disabled'))
 ->insert($view->checkBox('DnsLookup', 'enabled')->setAttribute('uncheckedValue', 'disabled'))
 ->insert($view->checkBox('GeoIP', '')->setAttribute('uncheckedValue', '#'))
+->insert($view->fieldsetSwitch('PdfReport', 'enabled',$view::FIELDSETSWITCH_CHECKBOX | $view::FIELDSETSWITCH_EXPANDABLE)->setAttribute('uncheckedValue', 'disabled')
+->insert($view->checkBox('SendReport', 'enabled')->setAttribute('uncheckedValue', 'disabled')))
 
 ->insert ($view->columns()
 ->insert($view->textInput('MaxNbOfDomain'))
