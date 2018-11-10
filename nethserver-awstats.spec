@@ -1,7 +1,7 @@
 Summary: nethserver - configure nfs server
 %define name nethserver-awstats
 Name: %{name}
-%define version 0.1.9
+%define version 0.1.10
 %define release 1
 Version: %{version}
 Release: %{release}%{?dist}
@@ -11,6 +11,7 @@ BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 Requires: nethserver-virtualhosts
 Requires: awstats
 Requires: mod_authnz_pam
+Requires: htmldoc
 BuildRequires: nethserver-devtools
 BuildArch: noarch
 
@@ -18,6 +19,9 @@ BuildArch: noarch
 configure awstats for apache analytics
 
 %changelog
+* Sat Nov 10 2018 stephane de labrusse <stephdl@de-labrusse.fr> 0.1.10.ns7
+- Awstats can make pdf report and export to root by email
+
 * Fri Nov 9 2018 stephane de labrusse <stephdl@de-labrusse.fr> 0.1.9.ns7
 - Revert geoipv6
 - templatize SystemName.DomainName awstats conf
@@ -58,6 +62,7 @@ rm -rf $RPM_BUILD_ROOT
 rm -f %{name}-%{version}-%{release}-filelist
 %{genfilelist} $RPM_BUILD_ROOT \
   --file /usr/libexec/nethserver/awstatsCronJobs 'attr(0750,root,root)' \
+  --file /etc/cron.weekly/awstatsMakePDFReport 'attr(0750,root,root)' \
 > %{name}-%{version}-%{release}-filelist
 
 %post
