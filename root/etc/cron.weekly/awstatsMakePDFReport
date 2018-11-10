@@ -1,0 +1,34 @@
+#!/usr/bin/bash
+
+awstatsPdfReport=`/usr/sbin/e-smith/db configuration getprop awstats PdfReport`
+
+if [[ $awstatsPdfReport == 'enabled' ]]; then
+    #build PDF report
+    mkdir /var/lib/nethserver/awstats/`date +%F` -p
+    cd /etc/awstats
+
+    for file in * ; do
+        if [[ -e $file ]] ; then
+            file=${file#"awstats."}
+            file=${file%".conf"}
+            fileCompare=${file#"."}
+            /usr/share/awstats/tools/awstats_buildstaticpages.pl  -update -config=$file -dir=/var/lib/nethserver/awstats/`date +%F` -builddate=%YY%MM%DD -buildpdf=/usr/bin/htmldoc >/dev/null
+            rm -f /var/lib/nethserver/awstats/`date +%F`/awstats.*.html
+        fi
+    done
+
+    # default conf, we do not need it
+    rm -rf /var/lib/nethserver/awstats/`date +%F`/{model,localhost.localdomain}
+
+    # send pdf report to root
+    awstatsSendReport=`/usr/sbin/e-smith/db configuration getprop awstats SendReport`
+    systemname=`/usr/sbin/e-smith/db configuration get SystemName`
+    domainname=`/usr/sbin/e-smith/db configuration get DomainName`
+
+    if  [[ $awstatsSendReport == 'enabled' ]]; then
+       cd /var/lib/nethserver/awstats/`date +%F`
+       for fileName in * ; do
+           echo "Awstats statistics pdf file : $fileName" |mail -a $fileName -s "Awstats: statistics of $fileName" root@$systemname.$domainname
+       done
+    fi
+fi
