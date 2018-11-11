@@ -17,7 +17,7 @@ templates2events("/etc/httpd/conf.d/default-virtualhost.inc", $event);
 templates2events("/etc/httpd/conf.d/virtualhosts.conf", $event);
 templates2events("/etc/awstats/awstats.maillog.conf", $event);
 
-foreach (qw( cron.d/awstats cron.hourly/awstats httpd/conf.d/awstats.conf))
+foreach (qw( cron.d/awstatsMakePDFReport cron.d/awstats cron.hourly/awstats httpd/conf.d/awstats.conf))
 {
     templates2events("/etc/$_", qw(
     vhost-create

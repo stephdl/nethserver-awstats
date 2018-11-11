@@ -1,0 +1,2 @@
+# Launch the job to create PDF report for awstats
+1 2 * * 0 root /usr/libexec/nethserver/awstatsMakePDFReport
