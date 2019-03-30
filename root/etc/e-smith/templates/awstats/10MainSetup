@@ -50,10 +50,10 @@
 {
     my $systemName = $SystemName.'.'.$DomainName;
     if ($ServerName ne $systemName){
-        $OUT.= "LogFile='/var/log/httpd/access.$ServerName.log'";
+        $OUT.= "LogFile=\"/var/log/httpd/access.$ServerName.log\"";
     }
     else {
-        $OUT .= "LogFile='/var/log/httpd/access_log'";
+        $OUT .= "LogFile=\"/var/log/httpd/access_log\"";
     }
 }
 # Enter the log file type you want to analyze.

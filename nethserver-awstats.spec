@@ -1,7 +1,7 @@
 Summary: nethserver - configure nfs server
 %define name nethserver-awstats
 Name: %{name}
-%define version 0.1.11
+%define version 0.1.12
 %define release 1
 Version: %{version}
 Release: %{release}%{?dist}
@@ -19,6 +19,9 @@ BuildArch: noarch
 configure awstats for apache analytics
 
 %changelog
+* Sat Mar 30 2019 stephane de Labrusse <stephdl@de-labrusse.fr> 0.1.12.ns7
+- Fix the log path in the virtualhost configuration
+
 * Sun Nov 11 2018 stephane de labrusse <stephdl@de-labrusse.fr> 0.1.11.ns7
 - Templatise the awstatsMakePDFReport cronJob
 
