@@ -1,7 +1,7 @@
 Summary: nethserver - configure nfs server
 %define name nethserver-awstats
 Name: %{name}
-%define version 0.1.13
+%define version 0.1.14
 %define release 1
 Version: %{version}
 Release: %{release}%{?dist}
@@ -19,6 +19,9 @@ BuildArch: noarch
 configure awstats for apache analytics
 
 %changelog
+* Mon Oct 14 2019 Stephane de Labrusse <stephdl@de-labrusse.fr> 0.1.14-1.ns7
+- cockpit. added to legacy apps
+
 * Mon Sep 16 2019 stephane de Labrusse <stephdl@de-labrusse.fr> 0.1.13.ns7
 - Fix the translation string Awstats_Description
 
@@ -64,10 +67,22 @@ configure awstats for apache analytics
 %build
 %{makedocs}
 perl createlinks
+sed -i 's/_RELEASE_/%{version}/' %{name}.json
+
 
 %install
 rm -rf $RPM_BUILD_ROOT
 (cd root   ; find . -depth -print | cpio -dump $RPM_BUILD_ROOT)
+
+mkdir -p %{buildroot}/usr/share/cockpit/%{name}/
+mkdir -p %{buildroot}/usr/share/cockpit/nethserver/applications/
+mkdir -p %{buildroot}/usr/libexec/nethserver/api/%{name}/
+cp -a manifest.json %{buildroot}/usr/share/cockpit/%{name}/
+cp -a logo.png %{buildroot}/usr/share/cockpit/%{name}/
+cp -a %{name}.json %{buildroot}/usr/share/cockpit/nethserver/applications/
+cp -a api/* %{buildroot}/usr/libexec/nethserver/api/%{name}/
+
+
 rm -f %{name}-%{version}-%{release}-filelist
 %{genfilelist} $RPM_BUILD_ROOT \
   --file /usr/libexec/nethserver/awstatsCronJobs 'attr(0750,root,root)' \
