@@ -1,5 +1,4 @@
-
-#!/bin/bash
+#!/usr/bin/perl
 
 #
 #
@@ -19,11 +18,61 @@
 # along with NethServer.  If not, see COPYING.
 #
 
-input=$(cat)
-action=$(jq -r .action <<<"$input")
-protocol=$(jq -r .location.protocol <<<"$input")
-host=$(jq -r .location.hostname <<<"$input")
+use warnings;
+use strict;
+use JSON;
+use esmith::ConfigDB;
+use NethServer::ApiTools;
 
-if [[ $action == "app-info" ]]; then
-    printf '{"url":"%s"}' "${protocol}//${host}:980/en-US/Awstats"
-fi 
+my $db = esmith::ConfigDB->open_ro;
+my $input = NethServer::ApiTools::readInput();
+my $cmd = $input->{'action'} || '';
+my $data;
+my %ret;
+
+
+if ($cmd eq 'configuration') {
+    my %awstats = (
+            MaxNbOfDomain => $db->get_prop('awstats','MaxNbOfDomain'),
+            Users => $db->get_prop('awstats','Users'),
+            MinHitBrowser => $db->get_prop('awstats','MinHitBrowser'),
+            MaxNbOfLoginShown => $db->get_prop('awstats','MaxNbOfLoginShown'),
+            MaxNbOfRefererShown => $db->get_prop('awstats','MaxNbOfRefererShown'),
+            MinHitKeyphrase => $db->get_prop('awstats','MinHitKeyphrase'),
+            MinHitDownloads => $db->get_prop('awstats','MinHitDownloads'),
+            MinHitOs => $db->get_prop('awstats','MinHitOs'),
+            Minute => $db->get_prop('awstats','Minute'),
+            MinHitFile => $db->get_prop('awstats','MinHitFile'),
+            DnsLookup => $db->get_prop('awstats','DnsLookup'),
+            MinHitDomain => $db->get_prop('awstats','MinHitDomain'),
+            MaxNbOfBrowsersShown => $db->get_prop('awstats','MaxNbOfBrowsersShown'),
+            MaxNbOfDownloadsShown => $db->get_prop('awstats','MaxNbOfDownloadsShown'),
+            MaxNbOfPageShown => $db->get_prop('awstats','MaxNbOfPageShown'),
+            skipPrivateIp => $db->get_prop('awstats','skipPrivateIp'),
+            MaxNbOfKeyphrasesShown => $db->get_prop('awstats','MaxNbOfKeyphrasesShown'),
+            MinHitHost => $db->get_prop('awstats','MinHitHost'),
+            MaxNbOfScreenSizesShown => $db->get_prop('awstats','MaxNbOfScreenSizesShown'),
+            PdfReport => $db->get_prop('awstats','PdfReport'),
+            status => $db->get_prop('awstats','status'),
+            MinHitKeyword => $db->get_prop('awstats','MinHitKeyword'),
+            MinHitRefer => $db->get_prop('awstats','MinHitRefer'),
+            MaxNbOfOsShown => $db->get_prop('awstats','MaxNbOfOsShown'),
+            MinHitScreenSize => $db->get_prop('awstats','MinHitScreenSize'),
+            MinHitLogin => $db->get_prop('awstats','MinHitLogin'),
+            MaxNbOfRobotShown => $db->get_prop('awstats','MaxNbOfRobotShown'),
+            MaxNbOfHostsShown => $db->get_prop('awstats','MaxNbOfHostsShown'),
+            GeoIP => $db->get_prop('awstats','GeoIP'),
+            MinHitRobot => $db->get_prop('awstats','MinHitRobot'),
+            MaxNbOfKeywordsShown => $db->get_prop('awstats','MaxNbOfKeywordsShown'),
+            access => $db->get_prop('awstats','access'),
+            SendReport => $db->get_prop('awstats','SendReport')
+            );
+
+    $ret{'configuration'} = \%awstats;
+    print encode_json(\%ret);
+    exit (0);
+
+}
+else {
+    NethServer::ApiTools::error();
+}
