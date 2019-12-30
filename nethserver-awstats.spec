@@ -1,7 +1,7 @@
 Summary: nethserver - configure nfs server
 %define name nethserver-awstats
 Name: %{name}
-%define version 0.1.14
+%define version 1.0.0
 %define release 1
 Version: %{version}
 Release: %{release}%{?dist}

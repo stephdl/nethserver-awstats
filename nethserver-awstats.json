@@ -18,9 +18,5 @@
     "url": "https://github.com/stephdl/nethserver-awstats",
     "email": "stephdl@de-labrusse.fr"
   },
-  "infoapi": {
-    "path": "nethserver-awstats/read"
-  },
-  "icon": "logo.png",
-  "external": true
+  "icon": "logo.png"
 } 
