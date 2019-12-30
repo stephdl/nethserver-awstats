@@ -1,0 +1,75 @@
+#!/usr/bin/php
+<?php
+/*
+ * This script is part of NethServer.
+ *
+ * NethServer is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License,
+ * or any later version.
+ *
+ * NethServer is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with NethServer.  If not, see COPYING.
+*/
+require_once("/usr/libexec/nethserver/api/lib/Helpers.php");
+$data = readInput();
+$v = new LegacyValidator($data);
+$cmd = $data['action'];
+$cdb = new EsmithDatabase('configuration');
+
+if ($data['action'] == 'configuration') {
+    // settings validator
+    $v->declareParameter('status',Validate::SERVICESTATUS);
+    $v->declareParameter('Minute', $v->createValidator()->integer()->greatThan(0)->lessThan(60));
+    $v->declareParameter('access', $v->createValidator()->memberOf('private','public'));
+
+    $users = $v->createValidator()->orValidator($v->createValidator(Validate::USERNAME), 
+        $v->createValidator(Validate::EMPTYSTRING));
+    foreach (explode(',',$data['Users']) as $u) {
+        if (!$users->evaluate($u)) {
+            $v->addValidationError('Users', 'not_valid_username', $u);
+        }
+    }
+    
+    $v->declareParameter('skipPrivateIp',Validate::SERVICESTATUS);
+    $v->declareParameter('MaxNbOfDomain',Validate::POSITIVE_INTEGER);
+    $v->declareParameter('MinHitDomain',Validate::POSITIVE_INTEGER);
+    $v->declareParameter('MaxNbOfHostsShown',Validate::POSITIVE_INTEGER);
+    $v->declareParameter('MinHitHost',Validate::POSITIVE_INTEGER);
+    $v->declareParameter('MaxNbOfLoginShown',Validate::POSITIVE_INTEGER);
+    $v->declareParameter('MinHitLogin',Validate::POSITIVE_INTEGER);
+    $v->declareParameter('MaxNbOfRobotShown',Validate::POSITIVE_INTEGER);
+    $v->declareParameter('MinHitRobot',Validate::POSITIVE_INTEGER);
+    $v->declareParameter('MaxNbOfDownloadsShown',Validate::POSITIVE_INTEGER);
+    $v->declareParameter('MinHitDownloads',Validate::POSITIVE_INTEGER);
+    $v->declareParameter('MaxNbOfPageShown',Validate::POSITIVE_INTEGER);
+    $v->declareParameter('MinHitFile',Validate::POSITIVE_INTEGER);
+    $v->declareParameter('MaxNbOfOsShown',Validate::POSITIVE_INTEGER);
+    $v->declareParameter('MinHitOs',Validate::POSITIVE_INTEGER);
+    $v->declareParameter('MaxNbOfBrowsersShown',Validate::POSITIVE_INTEGER);
+    $v->declareParameter('MinHitBrowser',Validate::POSITIVE_INTEGER);
+    $v->declareParameter('MaxNbOfScreenSizesShown',Validate::POSITIVE_INTEGER);
+    $v->declareParameter('MinHitScreenSize',Validate::POSITIVE_INTEGER);
+    $v->declareParameter('MaxNbOfRefererShown',Validate::POSITIVE_INTEGER);
+    $v->declareParameter('MinHitRefer',Validate::POSITIVE_INTEGER);
+    $v->declareParameter('MaxNbOfKeyphrasesShown',Validate::POSITIVE_INTEGER);
+    $v->declareParameter('MinHitKeyphrase',Validate::POSITIVE_INTEGER);
+    $v->declareParameter('MaxNbOfKeywordsShown',Validate::POSITIVE_INTEGER);
+    $v->declareParameter('MinHitKeyword',Validate::POSITIVE_INTEGER);
+    $v->declareParameter('DnsLookup',Validate::SERVICESTATUS);
+    $v->declareParameter('GeoIP',$v->createValidator()->memberOf('#',''));
+    $v->declareParameter('PdfReport',Validate::SERVICESTATUS);
+    $v->declareParameter('SendReport',Validate::SERVICESTATUS);
+}
+# Validate the input
+if ($v->validate()) {
+    success();
+} else {
+    error($v);
+}
+
