@@ -25,6 +25,7 @@ use esmith::ConfigDB;
 use NethServer::ApiTools;
 
 my $db = esmith::ConfigDB->open_ro;
+my $vdb = esmith::ConfigDB->open_ro('vhosts');
 my $input = NethServer::ApiTools::readInput();
 my $cmd = $input->{'action'} || '';
 my $data;
@@ -72,7 +73,27 @@ if ($cmd eq 'configuration') {
     print encode_json(\%ret);
     exit (0);
 
-}
-else {
-    NethServer::ApiTools::error();
-}
+  } elsif ($cmd eq 'statistics'){
+
+    my $systemname = $db->get_value('SystemName') or die "No SystemName db entry found\n";
+    my $domainname = $db->get_value('DomainName') or die "No DomainName db entry found\n";
+    my @awstats = ($systemname.'.'.$domainname);
+
+    foreach my $vhost ($vdb->get_all_by_prop('type'=>'vhost')) {
+
+        my $VhostName = $vhost->key;
+        my $status = $vhost->prop('status') || 'disabled';
+
+        my @ServerNames = split (',',($vhost->prop('ServerNames') || ''));
+        push @awstats, @ServerNames;
+    }
+    $ret{'awstats'}{'vhosts'} = \@awstats;
+    $ret{'awstats'}{'smtp'} = $systemname.'.'.$domainname;
+
+
+    print encode_json(\%ret);
+    exit (0);
+
+  } else {
+      NethServer::ApiTools::error();
+  }
