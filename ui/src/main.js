@@ -26,7 +26,6 @@ import DocInfo from "./directives/DocInfo.vue";
 import VueGoodTable from "vue-good-table";
 
 import App from './App.vue'
-import Dashboard from './views/Dashboard.vue'
 import Settings from './views/Settings.vue'
 import Statistics from './views/Statistics.vue'
 import Logs from './views/Logs.vue'
@@ -48,15 +47,14 @@ const router = new Router({
     mode: 'hash',
     base: process.env.BASE_URL,
     routes: [
-      { path: '/', redirect: '/dashboard'},
-      { path: '/dashboard', component: Dashboard },
+      { path: '/', redirect: '/settings'},
       { path: '/settings', component: Settings },
       { path: '/statistics', component: Statistics },
       { path: '/logs', component: Logs },
       { path: '/about', name: 'about', component: About },
     ]
 })
-router.replace("/dashboard")
+router.replace("/settings")
 
 var app = new Vue({
     i18n,
