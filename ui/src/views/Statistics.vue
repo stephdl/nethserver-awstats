@@ -24,8 +24,8 @@
                 </span>
               </div>
             </div>
-            <div class="list-group-item-text">
-            </div>
+            <!-- <div class="list-group-item-text">
+            </div> -->
           </div>
           <div class="list-view-pf-additional-info">
             <span v-if="index > 0" >
@@ -57,8 +57,8 @@
                 </a>
               </div>
             </div>
-            <div class="list-group-item-text">
-            </div>
+            <!-- <div class="list-group-item-text">
+            </div> -->
             </div>
             <div class="list-view-pf-additional-info">
               <span >
