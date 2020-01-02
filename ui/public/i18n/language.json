@@ -1,9 +1,52 @@
 {
     "settings": {
-        "title": "Settings"
+        "title": "Settings",
+        "status":"Enable the service",
+        "access": "Consult statistic pages outside of your LAN",
+        "Minute":"Run analysis each minute",
+        "Users": "Allowed users to consult web statistic",
+        "advanced_mode": "Advanced settings",
+        "skipPrivateIp": "Ignore hits from your local/trusted networks",
+        "DnsLookup": "Report host by name (DnsLookup)",
+        "GeoIP": "Report host by country (GeoIP database)",
+        "PdfReport": "Create the weekly PDF reports (Folder: /var/lib/nethserver/awstats)",
+        "SendReport": "Email the PDF reports to root",
+        "MaxNbOfDomain": "Max. number of domains show",
+        "MinHitDomain": "Only show domains with min. hits",
+        "MaxNbOfHostsShown": "Max. number of hosts show",
+        "MinHitHost":"Only show hosts with min. hits",
+        "MaxNbOfLoginShown":"Max. number of users show",
+        "MinHitLogin":"Only show users with min. hits",
+        "MaxNbOfRobotShown":"Max. number of robots show",
+        "MinHitRobot":"Only show robots with min. hits",
+        "MaxNbOfDownloadsShown":"Max. number of downloads show",
+        "MinHitDownloads":"Only show download with min. hits",
+        "MaxNbOfPageShown":"Max. number of pages show",
+        "MinHitFile":"Only show pages with min. hits",
+        "MaxNbOfOsShown":"Max. number of OS show",
+        "MinHitOs":"Only show OS with min. hits",
+        "MaxNbOfBrowsersShown":"Max. number of Browsers show",
+        "MinHitBrowser":"Only show Browser with min. hits",
+        "MaxNbOfScreenSizesShown":"Max. number of screen size show",
+        "MinHitScreenSize":"Only show screen size with min. hits",
+        "MaxNbOfRefererShown":"Max. number of referrers show",
+        "MinHitRefer":"Only show referrers with min. hits",
+        "MaxNbOfKeyphrasesShown":"Max. number of keyphrases show",
+        "MinHitKeyphrase":"Only show keyphrases with min. hits",
+        "MaxNbOfKeywordsShown":"Max. number of keywords show",
+        "MinHitKeyword":"Only show keywords with min. hits"
     },
-    "jails":{
-        "title": "Jails"
+    "validation":{
+        "validation_failed": "Jails",
+        "not_valid_username": "The user name is not valid"
+    },
+    "statistics":{
+        "title": "Statistics",
+        "list_of_virtualhosts": "List of apache virtualhosts",
+        "default_vhost": "Default virtual host",
+        "vhost": "Virtual host",
+        "SMTP": "Email statistics",
+        "maillog_statistic": "From maillog"
     },
     "about": {
         "title": "About",
