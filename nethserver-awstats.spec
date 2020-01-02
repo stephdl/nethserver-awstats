@@ -1,12 +1,14 @@
 Summary: nethserver - configure nfs server
 %define name nethserver-awstats
 Name: %{name}
-%define version 0.1.14
+%define version 1.0.1
 %define release 1
 Version: %{version}
 Release: %{release}%{?dist}
 License: GPL
 Source: %{name}-%{version}.tar.gz
+# Execute prep-sources to create Source1
+Source1:        %{name}.tar.gz
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 Requires: nethserver-virtualhosts
 Requires: awstats
@@ -19,6 +21,9 @@ BuildArch: noarch
 configure awstats for apache analytics
 
 %changelog
+* Thu Jan 02 2020 Stephane de Labrusse <stephdl@de-labrusse.fr> 1.0.1-1.ns7
+- cockpit. a new menu
+
 * Mon Oct 14 2019 Stephane de Labrusse <stephdl@de-labrusse.fr> 0.1.14-1.ns7
 - cockpit. added to legacy apps
 
@@ -77,11 +82,12 @@ rm -rf $RPM_BUILD_ROOT
 mkdir -p %{buildroot}/usr/share/cockpit/%{name}/
 mkdir -p %{buildroot}/usr/share/cockpit/nethserver/applications/
 mkdir -p %{buildroot}/usr/libexec/nethserver/api/%{name}/
-cp -a manifest.json %{buildroot}/usr/share/cockpit/%{name}/
-cp -a logo.png %{buildroot}/usr/share/cockpit/%{name}/
+
+tar xvf %{SOURCE1} -C %{buildroot}/usr/share/cockpit/%{name}/
+
 cp -a %{name}.json %{buildroot}/usr/share/cockpit/nethserver/applications/
 cp -a api/* %{buildroot}/usr/libexec/nethserver/api/%{name}/
-
+chmod +x %{buildroot}/usr/libexec/nethserver/api/%{name}/*
 
 rm -f %{name}-%{version}-%{release}-filelist
 %{genfilelist} $RPM_BUILD_ROOT \
