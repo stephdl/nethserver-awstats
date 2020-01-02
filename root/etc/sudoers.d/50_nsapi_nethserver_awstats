@@ -3,6 +3,8 @@
 # nsapi_nethserver_awstats
 #
 Cmnd_Alias NSAPI_NETHSERVER_AWSTATS = \
-     /usr/libexec/nethserver/api/nethserver-awstats/read
+     /usr/libexec/nethserver/api/nethserver-awstats/read \
+     /usr/libexec/nethserver/api/nethserver-awstats/validate \
+     /usr/libexec/nethserver/api/nethserver-awstats/update
 
 Defaults!NSAPI_NETHSERVER_AWSTATS !requiretty
