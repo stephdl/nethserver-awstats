@@ -1,7 +1,7 @@
 Summary: nethserver - configure nfs server
 %define name nethserver-awstats
 Name: %{name}
-%define version 1.0.0
+%define version 1.0.1
 %define release 1
 Version: %{version}
 Release: %{release}%{?dist}
@@ -21,6 +21,9 @@ BuildArch: noarch
 configure awstats for apache analytics
 
 %changelog
+* Thu Jan 02 2020 Stephane de Labrusse <stephdl@de-labrusse.fr> 1.0.1-1.ns7
+- cockpit. a new menu
+
 * Mon Oct 14 2019 Stephane de Labrusse <stephdl@de-labrusse.fr> 0.1.14-1.ns7
 - cockpit. added to legacy apps
 
