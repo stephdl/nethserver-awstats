@@ -20,6 +20,46 @@ BuildArch: noarch
 %description
 configure awstats for apache analytics
 
+%prep
+%setup
+
+%build
+%{makedocs}
+perl createlinks
+sed -i 's/_RELEASE_/%{version}/' %{name}.json
+
+
+%install
+rm -rf $RPM_BUILD_ROOT
+(cd root   ; find . -depth -print | cpio -dump $RPM_BUILD_ROOT)
+
+mkdir -p %{buildroot}/usr/share/cockpit/%{name}/
+mkdir -p %{buildroot}/usr/share/cockpit/nethserver/applications/
+mkdir -p %{buildroot}/usr/libexec/nethserver/api/%{name}/
+
+tar xvf %{SOURCE1} -C %{buildroot}/usr/share/cockpit/%{name}/
+
+cp -a %{name}.json %{buildroot}/usr/share/cockpit/nethserver/applications/
+cp -a api/* %{buildroot}/usr/libexec/nethserver/api/%{name}/
+chmod +x %{buildroot}/usr/libexec/nethserver/api/%{name}/*
+
+rm -f %{name}-%{version}-%{release}-filelist
+%{genfilelist} $RPM_BUILD_ROOT \
+  --file /usr/libexec/nethserver/awstatsCronJobs 'attr(0750,root,root)' \
+  --file /usr/libexec/nethserver/awstatsMakePDFReport 'attr(0750,root,root)' \
+> %{name}-%{version}-%{release}-filelist
+
+%post
+%postun
+
+%clean 
+rm -rf $RPM_BUILD_ROOT
+
+%files -f %{name}-%{version}-%{release}-filelist
+%defattr(-,root,root)
+%dir %{_nseventsdir}/%{name}-update
+%doc COPYING
+
 %changelog
 * Thu Jan 02 2020 Stephane de Labrusse <stephdl@de-labrusse.fr> 1.0.1-1.ns7
 - cockpit. a new menu
@@ -65,43 +105,3 @@ configure awstats for apache analytics
 
 * Tue May 09 2017 stephane de Labrusse <stephdl@de-labrusse.fr>
 - initial
-
-%prep
-%setup
-
-%build
-%{makedocs}
-perl createlinks
-sed -i 's/_RELEASE_/%{version}/' %{name}.json
-
-
-%install
-rm -rf $RPM_BUILD_ROOT
-(cd root   ; find . -depth -print | cpio -dump $RPM_BUILD_ROOT)
-
-mkdir -p %{buildroot}/usr/share/cockpit/%{name}/
-mkdir -p %{buildroot}/usr/share/cockpit/nethserver/applications/
-mkdir -p %{buildroot}/usr/libexec/nethserver/api/%{name}/
-
-tar xvf %{SOURCE1} -C %{buildroot}/usr/share/cockpit/%{name}/
-
-cp -a %{name}.json %{buildroot}/usr/share/cockpit/nethserver/applications/
-cp -a api/* %{buildroot}/usr/libexec/nethserver/api/%{name}/
-chmod +x %{buildroot}/usr/libexec/nethserver/api/%{name}/*
-
-rm -f %{name}-%{version}-%{release}-filelist
-%{genfilelist} $RPM_BUILD_ROOT \
-  --file /usr/libexec/nethserver/awstatsCronJobs 'attr(0750,root,root)' \
-  --file /usr/libexec/nethserver/awstatsMakePDFReport 'attr(0750,root,root)' \
-> %{name}-%{version}-%{release}-filelist
-
-%post
-%postun
-
-%clean 
-rm -rf $RPM_BUILD_ROOT
-
-%files -f %{name}-%{version}-%{release}-filelist
-%defattr(-,root,root)
-%dir %{_nseventsdir}/%{name}-update
-%doc COPYING
