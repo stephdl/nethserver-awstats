@@ -31,7 +31,7 @@
           v-on:change="handleLogs()"
           :disabled="view.follow"
         >
-          <option selected>/var/log/fail2ban.log</option>
+          <option selected>/var/log/cron</option>
         </select>
       </div>
       <div class="col-xs-12 col-sm-6 col-md-8">
@@ -106,11 +106,11 @@ mounted() {
 data() {
   return {
     view: {
-      path: "/var/log/fail2ban.log",
+      path: "/var/log/cron",
       logsLoaded: false,
       logsContent: "",
       follow: false,
-      filter: "",
+      filter: "awstats",
       lines: 100,
       process: null
     }
