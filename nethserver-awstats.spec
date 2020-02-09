@@ -1,7 +1,7 @@
 Summary: nethserver - configure nfs server
 %define name nethserver-awstats
 Name: %{name}
-%define version 1.0.1
+%define version 1.0.2
 %define release 1
 Version: %{version}
 Release: %{release}%{?dist}
@@ -61,6 +61,9 @@ rm -rf $RPM_BUILD_ROOT
 %doc COPYING
 
 %changelog
+* Sun Feb 09 2020 stephane de Labrusse <stephdl@de-labrusse.fr> 1.0.2-1.ns7
+- Better log display with Regexp
+
 * Thu Jan 02 2020 Stephane de Labrusse <stephdl@de-labrusse.fr> 1.0.1-1.ns7
 - cockpit. a new menu
 
