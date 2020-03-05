@@ -1,7 +1,7 @@
 Summary: nethserver - configure nfs server
 %define name nethserver-awstats
 Name: %{name}
-%define version 1.0.2
+%define version 1.0.3
 %define release 1
 Version: %{version}
 Release: %{release}%{?dist}
@@ -59,8 +59,12 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(-,root,root)
 %dir %{_nseventsdir}/%{name}-update
 %doc COPYING
+%attr(0440,root,root) /etc/sudoers.d/50_nsapi_nethserver_awstats
 
 %changelog
+* Thu Mar 05 2020  stephane de Labrusse <stephdl@de-labrusse.fr> 1.0.3-1.ns7
+- Fix bad sudoers permission
+
 * Sun Feb 09 2020 stephane de Labrusse <stephdl@de-labrusse.fr> 1.0.2-1.ns7
 - Better log display with Regexp
 
