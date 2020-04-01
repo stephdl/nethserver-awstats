@@ -1,7 +1,7 @@
 Summary: nethserver - configure nfs server
 %define name nethserver-awstats
 Name: %{name}
-%define version 1.0.3
+%define version 1.0.4
 %define release 1
 Version: %{version}
 Release: %{release}%{?dist}
@@ -62,6 +62,9 @@ rm -rf $RPM_BUILD_ROOT
 %attr(0440,root,root) /etc/sudoers.d/50_nsapi_nethserver_awstats
 
 %changelog
+* Wed Apr 01 2020  stephane de Labrusse <stephdl@de-labrusse.fr> 1.0.4-1.ns7
+- switch col-sm-4 to col-sm-2
+
 * Thu Mar 05 2020  stephane de Labrusse <stephdl@de-labrusse.fr> 1.0.3-1.ns7
 - Fix bad sudoers permission
 

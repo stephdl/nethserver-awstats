@@ -6,7 +6,7 @@
       <form class="form-horizontal" v-on:submit.prevent="saveSettings('status')">
         <div :class="['form-group', errors.status.hasError ? 'has-error' : '']">
               <label
-                class="col-sm-4 control-label"
+                class="col-sm-2 control-label"
                 for="textInput-modal-markup"
               >{{$t('settings.status')}}</label>
               <div class="col-sm-5">
@@ -30,7 +30,7 @@
           :class="['form-group', errors.access.hasError ? 'has-error' : '']"
         >
           <label
-            class="col-sm-4 control-label"
+            class="col-sm-2 control-label"
             for="textInput-modal-markup"
           >{{$t('settings.access')}}</label>
           <div class="col-sm-5">
@@ -45,7 +45,7 @@
           v-if="configuration.status"
           :class="['form-group', errors.Minute.hasError ? 'has-error' : '']">
           <label
-            class="col-sm-4 control-label"
+            class="col-sm-2 control-label"
             for="textInput-modal-markup"
           >{{$t('settings.Minute')}}
           </label>
@@ -61,7 +61,7 @@
           v-if="configuration.status"
           :class="['form-group', errors.Users.hasError ? 'has-error' : '']">
           <label
-            class="col-sm-4 control-label"
+            class="col-sm-2 control-label"
             for="textInput-modal-markup"
           >{{$t('settings.Users')}}
           </label>
@@ -74,7 +74,7 @@
           </div>
         </div>
         <div v-if="configuration.status" class="form-group">
-            <legend class=" col-sm-4 control-label fields-section-header-pf" aria-expanded="true">
+            <legend class=" col-sm-2 control-label fields-section-header-pf" aria-expanded="true">
               <span
                 :class="['fa fa-angle-right field-section-toggle-pf', advanced ? 'fa-angle-down' : '']"
               ></span>
@@ -90,7 +90,7 @@
             :class="['form-group', errors.skipPrivateIp.hasError ? 'has-error' : '']"
           >
             <label
-              class="col-sm-4 control-label"
+              class="col-sm-2 control-label"
               for="textInput-modal-markup"
             >{{$t('settings.skipPrivateIp')}}</label>
             <div class="col-sm-5">
@@ -106,7 +106,7 @@
             :class="['form-group', errors.DnsLookup.hasError ? 'has-error' : '']"
           >
             <label
-              class="col-sm-4 control-label"
+              class="col-sm-2 control-label"
               for="textInput-modal-markup"
             >{{$t('settings.DnsLookup')}}</label>
             <div class="col-sm-5">
@@ -122,7 +122,7 @@
             :class="['form-group', errors.GeoIP.hasError ? 'has-error' : '']"
           >
             <label
-              class="col-sm-4 control-label"
+              class="col-sm-2 control-label"
               for="textInput-modal-markup"
             >{{$t('settings.GeoIP')}}</label>
             <div class="col-sm-5">
@@ -138,7 +138,7 @@
             :class="['form-group', errors.PdfReport.hasError ? 'has-error' : '']"
           >
             <label
-              class="col-sm-4 control-label"
+              class="col-sm-2 control-label"
               for="textInput-modal-markup"
             >{{$t('settings.PdfReport')}}</label>
             <div class="col-sm-5">
@@ -154,7 +154,7 @@
             :class="['form-group', errors.SendReport.hasError ? 'has-error' : '']"
           >
             <label
-              class="col-sm-4 control-label"
+              class="col-sm-2 control-label"
               for="textInput-modal-markup"
             >{{$t('settings.SendReport')}}</label>
             <div class="col-sm-5">
@@ -170,7 +170,7 @@
             v-if="configuration.status"
             :class="['form-group', errors.MaxNbOfDomain.hasError ? 'has-error' : '']">
             <label
-              class="col-sm-4 control-label"
+              class="col-sm-2 control-label"
               for="textInput-modal-markup"
             >{{$t('settings.MaxNbOfDomain')}}
             </label>
@@ -186,7 +186,7 @@
             v-if="configuration.status"
             :class="['form-group', errors.MinHitDomain.hasError ? 'has-error' : '']">
             <label
-              class="col-sm-4 control-label"
+              class="col-sm-2 control-label"
               for="textInput-modal-markup"
             >{{$t('settings.MinHitDomain')}}
             </label>
@@ -203,7 +203,7 @@
             v-if="configuration.status"
             :class="['form-group', errors.MaxNbOfHostsShown.hasError ? 'has-error' : '']">
             <label
-              class="col-sm-4 control-label"
+              class="col-sm-2 control-label"
               for="textInput-modal-markup"
             >{{$t('settings.MaxNbOfHostsShown')}}
             </label>
@@ -219,7 +219,7 @@
             v-if="configuration.status"
             :class="['form-group', errors.MinHitHost.hasError ? 'has-error' : '']">
             <label
-              class="col-sm-4 control-label"
+              class="col-sm-2 control-label"
               for="textInput-modal-markup"
             >{{$t('settings.MinHitHost')}}
             </label>
@@ -236,7 +236,7 @@
             v-if="configuration.status"
             :class="['form-group', errors.MaxNbOfLoginShown.hasError ? 'has-error' : '']">
             <label
-              class="col-sm-4 control-label"
+              class="col-sm-2 control-label"
               for="textInput-modal-markup"
             >{{$t('settings.MaxNbOfLoginShown')}}
             </label>
@@ -252,7 +252,7 @@
             v-if="configuration.status"
             :class="['form-group', errors.MinHitLogin.hasError ? 'has-error' : '']">
             <label
-              class="col-sm-4 control-label"
+              class="col-sm-2 control-label"
               for="textInput-modal-markup"
             >{{$t('settings.MinHitLogin')}}
             </label>
@@ -269,7 +269,7 @@
             v-if="configuration.status"
             :class="['form-group', errors.MaxNbOfRobotShown.hasError ? 'has-error' : '']">
             <label
-              class="col-sm-4 control-label"
+              class="col-sm-2 control-label"
               for="textInput-modal-markup"
             >{{$t('settings.MaxNbOfRobotShown')}}
             </label>
@@ -285,7 +285,7 @@
             v-if="configuration.status"
             :class="['form-group', errors.MinHitRobot.hasError ? 'has-error' : '']">
             <label
-              class="col-sm-4 control-label"
+              class="col-sm-2 control-label"
               for="textInput-modal-markup"
             >{{$t('settings.MinHitRobot')}}
             </label>
@@ -302,7 +302,7 @@
             v-if="configuration.status"
             :class="['form-group', errors.MaxNbOfDownloadsShown.hasError ? 'has-error' : '']">
             <label
-              class="col-sm-4 control-label"
+              class="col-sm-2 control-label"
               for="textInput-modal-markup"
             >{{$t('settings.MaxNbOfDownloadsShown')}}
             </label>
@@ -318,7 +318,7 @@
             v-if="configuration.status"
             :class="['form-group', errors.MinHitDownloads.hasError ? 'has-error' : '']">
             <label
-              class="col-sm-4 control-label"
+              class="col-sm-2 control-label"
               for="textInput-modal-markup"
             >{{$t('settings.MinHitDownloads')}}
             </label>
@@ -335,7 +335,7 @@
             v-if="configuration.status"
             :class="['form-group', errors.MaxNbOfPageShown.hasError ? 'has-error' : '']">
             <label
-              class="col-sm-4 control-label"
+              class="col-sm-2 control-label"
               for="textInput-modal-markup"
             >{{$t('settings.MaxNbOfPageShown')}}
             </label>
@@ -351,7 +351,7 @@
             v-if="configuration.status"
             :class="['form-group', errors.MinHitFile.hasError ? 'has-error' : '']">
             <label
-              class="col-sm-4 control-label"
+              class="col-sm-2 control-label"
               for="textInput-modal-markup"
             >{{$t('settings.MinHitFile')}}
             </label>
@@ -368,7 +368,7 @@
             v-if="configuration.status"
             :class="['form-group', errors.MaxNbOfOsShown.hasError ? 'has-error' : '']">
             <label
-              class="col-sm-4 control-label"
+              class="col-sm-2 control-label"
               for="textInput-modal-markup"
             >{{$t('settings.MaxNbOfOsShown')}}
             </label>
@@ -384,7 +384,7 @@
             v-if="configuration.status"
             :class="['form-group', errors.MinHitOs.hasError ? 'has-error' : '']">
             <label
-              class="col-sm-4 control-label"
+              class="col-sm-2 control-label"
               for="textInput-modal-markup"
             >{{$t('settings.MinHitOs')}}
             </label>
@@ -401,7 +401,7 @@
             v-if="configuration.status"
             :class="['form-group', errors.MaxNbOfBrowsersShown.hasError ? 'has-error' : '']">
             <label
-              class="col-sm-4 control-label"
+              class="col-sm-2 control-label"
               for="textInput-modal-markup"
             >{{$t('settings.MaxNbOfBrowsersShown')}}
             </label>
@@ -417,7 +417,7 @@
             v-if="configuration.status"
             :class="['form-group', errors.MinHitBrowser.hasError ? 'has-error' : '']">
             <label
-              class="col-sm-4 control-label"
+              class="col-sm-2 control-label"
               for="textInput-modal-markup"
             >{{$t('settings.MinHitBrowser')}}
             </label>
@@ -434,7 +434,7 @@
             v-if="configuration.status"
             :class="['form-group', errors.MaxNbOfScreenSizesShown.hasError ? 'has-error' : '']">
             <label
-              class="col-sm-4 control-label"
+              class="col-sm-2 control-label"
               for="textInput-modal-markup"
             >{{$t('settings.MaxNbOfScreenSizesShown')}}
             </label>
@@ -450,7 +450,7 @@
             v-if="configuration.status"
             :class="['form-group', errors.MinHitScreenSize.hasError ? 'has-error' : '']">
             <label
-              class="col-sm-4 control-label"
+              class="col-sm-2 control-label"
               for="textInput-modal-markup"
             >{{$t('settings.MinHitScreenSize')}}
             </label>
@@ -467,7 +467,7 @@
             v-if="configuration.status"
             :class="['form-group', errors.MaxNbOfRefererShown.hasError ? 'has-error' : '']">
             <label
-              class="col-sm-4 control-label"
+              class="col-sm-2 control-label"
               for="textInput-modal-markup"
             >{{$t('settings.MaxNbOfRefererShown')}}
             </label>
@@ -483,7 +483,7 @@
             v-if="configuration.status"
             :class="['form-group', errors.MinHitRefer.hasError ? 'has-error' : '']">
             <label
-              class="col-sm-4 control-label"
+              class="col-sm-2 control-label"
               for="textInput-modal-markup"
             >{{$t('settings.MinHitRefer')}}
             </label>
@@ -500,7 +500,7 @@
             v-if="configuration.status"
             :class="['form-group', errors.MaxNbOfKeyphrasesShown.hasError ? 'has-error' : '']">
             <label
-              class="col-sm-4 control-label"
+              class="col-sm-2 control-label"
               for="textInput-modal-markup"
             >{{$t('settings.MaxNbOfKeyphrasesShown')}}
             </label>
@@ -516,7 +516,7 @@
             v-if="configuration.status"
             :class="['form-group', errors.MinHitKeyphrase.hasError ? 'has-error' : '']">
             <label
-              class="col-sm-4 control-label"
+              class="col-sm-2 control-label"
               for="textInput-modal-markup"
             >{{$t('settings.MinHitKeyphrase')}}
             </label>
@@ -533,7 +533,7 @@
             v-if="configuration.status"
             :class="['form-group', errors.MaxNbOfKeywordsShown.hasError ? 'has-error' : '']">
             <label
-              class="col-sm-4 control-label"
+              class="col-sm-2 control-label"
               for="textInput-modal-markup"
             >{{$t('settings.MaxNbOfKeywordsShown')}}
             </label>
@@ -549,7 +549,7 @@
             v-if="configuration.status"
             :class="['form-group', errors.MinHitKeyword.hasError ? 'has-error' : '']">
             <label
-              class="col-sm-4 control-label"
+              class="col-sm-2 control-label"
               for="textInput-modal-markup"
             >{{$t('settings.MinHitKeyword')}}
             </label>
@@ -563,7 +563,7 @@
           </div>
         </div>
         <div  class="form-group">
-          <label class="col-sm-4 control-label" for="textInput-modal-markup">
+          <label class="col-sm-2 control-label" for="textInput-modal-markup">
             <div v-if="loaders" class="spinner spinner-sm form-spinner-loader adjust-top-loader"></div>
           </label>
           <div class="col-sm-5">
