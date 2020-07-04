@@ -1,7 +1,7 @@
 Summary: nethserver - configure nfs server
 %define name nethserver-awstats
 Name: %{name}
-%define version 1.0.4
+%define version 1.0.5
 %define release 1
 Version: %{version}
 Release: %{release}%{?dist}
@@ -51,6 +51,8 @@ rm -f %{name}-%{version}-%{release}-filelist
 
 %post
 %postun
+/usr/bin/rm -f /etc/httpd/conf.d/awstats.conf
+/usr/bin/systemctl reload httpd
 
 %clean 
 rm -rf $RPM_BUILD_ROOT
@@ -62,6 +64,9 @@ rm -rf $RPM_BUILD_ROOT
 %attr(0440,root,root) /etc/sudoers.d/50_nsapi_nethserver_awstats
 
 %changelog
+* Sat Jul 04 2020 stephane de Labrusse <stephdl@de-labrusse.fr> 1.0.5-1.ns7
+- Remove http templates after rpm removal
+
 * Wed Apr 01 2020  stephane de Labrusse <stephdl@de-labrusse.fr> 1.0.4-1.ns7
 - switch col-sm-4 to col-sm-2
 
