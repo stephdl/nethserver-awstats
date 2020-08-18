@@ -2,7 +2,7 @@ Summary: nethserver - configure nfs server
 %define name nethserver-awstats
 Name: %{name}
 %define version 1.0.5
-%define release 1
+%define release 2
 Version: %{version}
 Release: %{release}%{?dist}
 License: GPL
@@ -51,8 +51,10 @@ rm -f %{name}-%{version}-%{release}-filelist
 
 %post
 %postun
-/usr/bin/rm -f /etc/httpd/conf.d/awstats.conf
-/usr/bin/systemctl reload httpd
+if [ $1 == 0 ] ; then
+    /usr/bin/rm -f /etc/httpd/conf.d/awstats.conf
+    /usr/bin/systemctl reload httpd
+fi
 
 %clean 
 rm -rf $RPM_BUILD_ROOT
