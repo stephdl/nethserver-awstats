@@ -1,7 +1,7 @@
 Summary: nethserver - configure nfs server
 %define name nethserver-awstats
 Name: %{name}
-%define version 1.0.5
+%define version 1.0.6
 %define release 2
 Version: %{version}
 Release: %{release}%{?dist}
@@ -66,6 +66,9 @@ rm -rf $RPM_BUILD_ROOT
 %attr(0440,root,root) /etc/sudoers.d/50_nsapi_nethserver_awstats
 
 %changelog
+* Sat Jul 04 2020 stephane de Labrusse <stephdl@de-labrusse.fr> 1.0.6-1.ns7
+- allow to parse full year log for mail with web browser
+
 * Sat Jul 04 2020 stephane de Labrusse <stephdl@de-labrusse.fr> 1.0.5-1.ns7
 - Remove http templates after rpm removal
 
